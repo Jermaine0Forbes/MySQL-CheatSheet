@@ -175,6 +175,26 @@ SQL is boring
 
     - NOW()
       - is a function that creates date, time, and timestamp columns
+	  
+	
+	- SELECT CONCAT(prop1, prop2, prop3) AS alias FROM tablename
+
+    - SELECT CONCAT_WS(separator ,prop1, prop2) FROM tablename
+		- SELECT CONCAT_WS("* *", firstName, lastName) as fullName from person
+		will display:  jermaine* *forbes
+		- http://www.w3resource.com/mysql/string-functions/mysql-concat_ws-function.php
+
+    - FORMAT()
+		- SELECT FORMAT(decimal, digit) as money from bankaccount
+		-  changes the decimal place of a  number
+		- http://www.w3resource.com/mysql/string-functions/mysql-format-function.php
+
+    - RAND()
+		- My definition: This functions gives you a random number between 0 - 1. Similar
+		to javascsript Math.random
+		- http://www.w3resource.com/mysql/mathematical-functions/mysql-rand-function.php
+		- SELECT cook_id , name FROM cookies ORDER BY RAND() LIMIT 4;
+			- Randomly selects 4 rows that will output the name and the cookie id;
 
 
     
