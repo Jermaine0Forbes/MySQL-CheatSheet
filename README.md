@@ -13,6 +13,12 @@ I have a terrible memory so this is a cheat sheet
 
 - NOT BETWEEN
 
+- ORDER BY
+
+- GROUP BY
+
+- LIMIT
+
 ## CRUD
 
 ## Remove
@@ -23,4 +29,4 @@ I have a terrible memory so this is a cheat sheet
 
 ## Functions
 
-## Miscellaneous Commandss
+## Miscellaneous Commands
