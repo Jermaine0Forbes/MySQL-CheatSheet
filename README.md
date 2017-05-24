@@ -35,6 +35,7 @@ I have a terrible memory so this is a cheat sheet
 - UPDATE tablename SET column = value
 - WHERE
 
+[as]:#as
 
 
 ## Querying
