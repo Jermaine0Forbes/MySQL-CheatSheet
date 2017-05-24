@@ -5,7 +5,7 @@ I have a terrible memory so this is a cheat sheet
 
 - ALTER TABLES
 - [link][#as "AS"]
-- CONCAT()
+- [link][#concat() "CONCAT()"]
 - CONCAT_WS()
 - CREATE DATABASE
 - CREATE TABLE
@@ -25,7 +25,7 @@ I have a terrible memory so this is a cheat sheet
 - ORDER BY
 - RAND()
 - REPLACE INTO
-- SELECT
+- SELECT  
 - SHA1()
 - SHOW COLUMNNS FROM
 - SHOW DATABASES
