@@ -94,6 +94,9 @@ SQL is boring
         - Limits the number of documents that you receive from the query
         - You can have a start and end number or you can one number that will
         output then number of documents
+	
+	- SELECT firstName AS name FROM tablename
+		-
 
     ---------------------------------------------------------------------------------------
 
