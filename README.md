@@ -38,12 +38,12 @@ I have a terrible memory so this is a cheat sheet
 [as]:#as
 [concat]:#concat
 [group]:#group_by
-[like]:[#like]
-[limit]:[#limit]
-[not-between]:[#not-between]
-[order]:[#order-by]
-[select]:[#select]
-[where]:[#where]
+[like]:#like
+[limit]:#limit
+[not-between]:#not-between
+[order]:#order-by
+[select]:#select
+[where]:#where
 
 
 
