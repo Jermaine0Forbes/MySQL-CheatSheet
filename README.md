@@ -4,8 +4,8 @@ I have a terrible memory so this is a cheat sheet
 
 
 - ALTER TABLES
-- [link][#as "AS"]
-- [link][#concat() "CONCAT()"]
+- [AS][as]
+- [CONCAT()][#concat()]
 - CONCAT_WS()
 - CREATE DATABASE
 - CREATE TABLE
