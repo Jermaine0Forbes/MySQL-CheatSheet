@@ -62,7 +62,7 @@ select firstName as name from tablename
 
 ```
 ### LIKE
-This expression searches for data rows where the property first name starts
+- This expression searches for data rows where the property first name starts
 with a capital B. And returns all the rows that have that
 ```sql
 SELECT * FROM <insert table name> WHERE  first_name LIKE "B%"
@@ -86,16 +86,29 @@ SELECT * FROM <insert table name> WHERE (number NOT BETWEEN 1 and 20)
 ```
 
 ### ORDER BY
-
+ -  this expression will order the rows of data based on the property name
+        if the property is a number it will go from 0 - infinity. And if it is a
+        string it will go from a-z.
 ```sql
 SELECT * FROM  <insert table name> ORDER by <insert property name>
 ```
+
+```sql
+SELECT * FROM  <insert table name> ORDER by <insert property name> DESC/ASC
+```
+Exp: orders the rows from ACS = alphabetic or numeric order, or DESC the reverse
 
 ### SELECT
 
 ```sql
 SELECT <insert column name> FROM <insert table name>
 ```
+Exp: displays all the values by the specific column name that you requested
+
+```sql
+SELECT <insert column name> FROM <insert table name>
+```
+Exp: displays all the columns for the table name
 
 ### WHERE
 
