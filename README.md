@@ -77,7 +77,10 @@ SELECT * FROM tablename LIMIT startNumber, endNumber
 Exp: This selects from tablename that will receive rows from the startNumber to the endNumber
 
 ### NOT BETWEEN
-
+-  This expression returns values where the property number does not have 1-20.
+        The number property is a made up example, it can be data property that has numbers
+        enabled like for example weight, or income. Whatever data property that is a
+        number can use the NOT BETWEEN
 ```sql
 SELECT * FROM <insert table name> WHERE (number NOT BETWEEN 1 and 20)
 ```
