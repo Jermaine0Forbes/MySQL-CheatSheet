@@ -53,40 +53,47 @@ I have a terrible memory so this is a cheat sheet
 ## Querying
 
 ###  AS
-```
+Rename a column name as something else
+```sql
 SELECT firstName AS name FROM tablename
 ```
 ### GROUP BY
-```
+```sql
 
 ```
 ### LIKE
-```
+
+```sql
 SELECT * FROM <insert table name> WHERE  first_name LIKE "B%"
 ```
 
 ### LIMIT
-```
+
+```sql
 SELECT * FROM tablename LIMIT startNumber, endNumber
 ```
 
 ### NOT BETWEEN
-```
+
+```sql
 SELECT * FROM <insert table name> WHERE (number NOT BETWEEN 1 and 20)
 ```
 
 ### ORDER BY
-```
+
+```sql
 SELECT * FROM  <insert table name> ORDER by <insert property name>
 ```
 
 ### SELECT
-```
+
+```sql
 SELECT <insert column name> FROM <insert table name>
 ```
 
 ### WHERE
-```
+
+```sql
 SELECT <insert column name> FROM <insert table name> WHERE <insert conditions>
 ```
 

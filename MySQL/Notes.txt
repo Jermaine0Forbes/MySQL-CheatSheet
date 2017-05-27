@@ -199,7 +199,10 @@ SQL is boring
 		- SELECT cook_id , name FROM cookies ORDER BY RAND() LIMIT 4;
 			- Randomly selects 4 rows that will output the name and the cookie id;
 
-
+	 - ROUND()
+		- My: Rounds up  the  decimals values of the selected columns
+		- Link: http://www.w3resource.com/mysql/mathematical-functions/mysql-round-function.php
+		- Code: SELECT trans_id AS trans , ROUND(price) AS price FROM transactions; 
     
 	
 	------ Miscellaneous Commands
