@@ -55,23 +55,26 @@ I have a terrible memory so this is a cheat sheet
 ###  AS
 Rename a column name as something else
 ```sql
-SELECT firstName AS name FROM tablename
+select firstName as name from tablename
 ```
 ### GROUP BY
 ```sql
 
 ```
 ### LIKE
-
+This expression searches for data rows where the property first name starts
+with a capital B. And returns all the rows that have that
 ```sql
 SELECT * FROM <insert table name> WHERE  first_name LIKE "B%"
 ```
 
 ### LIMIT
-
+- Limits the number of documents that you receive from the query
+- You can have a start and end number or you can one number that will output then number of documents
 ```sql
 SELECT * FROM tablename LIMIT startNumber, endNumber
 ```
+Exp: This selects from tablename that will receive rows from the startNumber to the endNumber
 
 ### NOT BETWEEN
 
