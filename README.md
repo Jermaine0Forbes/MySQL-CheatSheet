@@ -53,13 +53,13 @@ I have a terrible memory so this is a cheat sheet
 [where]:#where
 
 
-
+```sql
 +---------------+
 | average_price |
 +---------------+
 |      6.740000 |
 +---------------+
-
+```
 
 
 
