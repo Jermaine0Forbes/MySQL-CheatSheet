@@ -6,48 +6,70 @@ I have a terrible memory so this is a cheat sheet
 - ALTER TABLES
 - [AS][as]
 - [AVG][avg]
+- [CASE()][case]
+- [COALESCE()][coal]
 - [CONCAT()][concat]
 - CONCAT_WS()
+- [COUNT()][count]
 - CREATE DATABASE
 - CREATE TABLE
-- [DATE][date]
-- DELETE FROM tablename  
+- [DATE()][date]
+- DELETE from tablename  
 - DESCRIBE
 - DROP DATABASE
 - DROP TABLES
+- [ELSE()][]
 - exit
+- [EXPLAIN][exp]
 - FORMAT()
+- [GREATEST()][great]
 - [GROUP BY][group]
+- [IF][if]
+- [IFNULL()][inull]
 - INSERT INTO (column) VALUES(value)
+- [MAX()][max]
 - MD5()
 - [NOT BETWEEN][not-between]
 - NOW()
+- [LEAST()][least]
 - [LIKE][like]
 - [LIMIT][limit]
 - [ORDER BY][order]
 - RAND()
+- [RENAME TO][renam]
 - REPLACE INTO
 - [SELECT][select]  
 - SHA1()
-- SHOW COLUMNNS FROM
+- SHOW COLUMNNS from
 - SHOW DATABASES
 - SHOW TABLES
 - SHOW WARNINGS
-- [SUM][sum]
+- [SUM()][sum]
 - TRUNCATE
 - UPDATE tablename SET column = value
-- [WHERE][where]
+- [where][where]
 
 [add]:#add
 [as]:#as
 [avg]:#avg
+[case]:#case
+[coal]:#coalesce
 [concat]:#concat
+[count]:#count
 [date]:#date
+[else]:#else
+[exp]:#explain
+[great]:#greatest
 [group]:#group_by
+[if]:#if
+[inull]:#ifnull
+[least]:#least
 [like]:#like
 [limit]:#limit
+[max]:#max
 [not-between]:#not-between
 [order]:#order-by
+[renam]:#rename-to
 [select]:#select
 [sum]:#sum
 [where]:#where
@@ -85,7 +107,7 @@ I have a terrible memory so this is a cheat sheet
 
 ### ADD
 ```sql
-	alter table <insert table name >  add age int(3) default "18"
+alter table pokemon  add speed int(3) default "18";
 ```
 Exp: adds a new column called age that can hold a maximum of three digits
 and the default value will be 18
@@ -94,13 +116,16 @@ and the default value will be 18
 ###  AS
 Rename a column name as something else
 ```sql
-select firstName as name from tablename
+select name as pokemon from pokemon
 ```
 ### AVG()
 - Returns the average number based on the column rows
 - http://bit.ly/2r2FDqO
 ```sql
 	select <insert table name >  add age int(3) default "18"
+```
+### CASE
+```sql
 ```
 
 ### CREATE DATABASE
@@ -111,11 +136,19 @@ select firstName as name from tablename
 ```sql
 ```
 
+### COALESCE
+```sql
+```
+
 ### CONCAT()
 ```sql
 ```
 
 ### CONCAT_WS()
+```sql
+```
+
+### COUNT
 ```sql
 ```
 
@@ -131,7 +164,7 @@ select firstName as name from tablename
 select date(2017-5-28 07:58:30) 
 ```
 
-### DELETE FROM tablename
+### DELETE from tablename
 ```sql
 ```
 ### DESCRIBE
@@ -152,32 +185,63 @@ select date(2017-5-28 07:58:30)
 ```sql
 ```
 
-### FORMAT()
+### ELSE
+```sql
+```
 
+### FORMAT()
+```sql
+```
+
+### IF()
+```sql
+```
+
+### IFNULL()
+```sql
+```
 
 ### INSERT INTO (column) VALUES(value)
 ```sql
 ```
 
+### GREATEST()
+```sql
+
+```
 
 ### GROUP BY
 ```sql
 
 ```
+
+### HAVING
+```sql
+
+```
+
+### LEAST()
+```sql
+
+```
+
+
 ### LIKE
 - This expression searches for data rows where the property first name starts
 with a capital B. And returns all the rows that have that
 ```sql
-SELECT * FROM <insert table name> WHERE  first_name LIKE "B%"
+select * from trainer where  name like "A%"
 ```
 
 ### LIMIT
 - Limits the number of documents that you receive from the query
 - You can have a start and end number or you can one number that will output then number of documents
 ```sql
-SELECT * FROM tablename LIMIT startNumber, endNumber
+select * from tablename limit startNumber, endNumber
 ```
 Exp: This selects from tablename that will receive rows from the startNumber to the endNumber
+
+### MAX()
 
 ### MD5()
 ```sql
@@ -189,7 +253,7 @@ Exp: This selects from tablename that will receive rows from the startNumber to 
         enabled like for example weight, or income. Whatever data property that is a
         number can use the NOT BETWEEN
 ```sql
-SELECT * FROM <insert table name> WHERE (number NOT BETWEEN 1 and 20)
+select * from <insert table name> where (number not between 1 and 20)
 ```
 
 ### NOW()
@@ -201,11 +265,11 @@ SELECT * FROM <insert table name> WHERE (number NOT BETWEEN 1 and 20)
         if the property is a number it will go from 0 - infinity. And if it is a
         string it will go from a-z.
 ```sql
-SELECT * FROM  <insert table name> ORDER by <insert property name>
+select * from  trainer order by name
 ```
 
 ```sql
-SELECT * FROM  <insert table name> ORDER by <insert property name> DESC/ASC
+select * from  trainer order by age DESC/ASC
 ```
 Exp: orders the rows from ACS = alphabetic or numeric order, or DESC the reverse
 
@@ -213,21 +277,27 @@ Exp: orders the rows from ACS = alphabetic or numeric order, or DESC the reverse
 ```sql
 ```
 
+### RENAME TO()
+```sql
+```
+
 ### REPLACE INTO
 ```sql
 ```
-### SHA1()
 
+### SHA1()
+```sql
+```
 
 ### SELECT
 
 ```sql
-SELECT <insert column name> FROM <insert table name>
+select <insert column name> from <insert table name>
 ```
 Exp: displays all the values by the specific column name that you requested
 
 ```sql
-SELECT <insert column name> FROM <insert table name>
+select <insert column name> from <insert table name>
 ```
 Exp: displays all the columns for the table name
 
@@ -239,7 +309,7 @@ Exp: displays all the columns for the table name
 ```sql
 ```
 
-### SHOW COLUMNNS FROM
+### SHOW COLUMNNS from
 ```sql
 ```
 
@@ -250,7 +320,7 @@ Exp: displays all the columns for the table name
 ### SUM()
 - You should know what this function does
 ```sql
- select 
+ select sum(attack) as all_pokemon_attack_power from pokemon;
 ```
 
 ### TRUNCATE
@@ -259,13 +329,13 @@ Exp: displays all the columns for the table name
 
 ### UPDATE 
 ```sql
-SELECT tablename SET column = value
+select pokemon set name = "magmar" where id = 5;
 ```
 
-### WHERE
+### where
 
 ```sql
-SELECT <insert column name> FROM <insert table name> WHERE <insert conditions>
+select hp , attack , defense from pokemon where name = "abra";
 ```
 
 
