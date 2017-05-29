@@ -7,6 +7,7 @@ I have a terrible memory so this is a cheat sheet
 - [AS][as]
 - [AVG][avg]
 - [CASE()][case]
+- [CHANGE COLUMN][chCo]
 - [COALESCE()][coal]
 - [CONCAT()][concat]
 - CONCAT_WS()
@@ -18,7 +19,8 @@ I have a terrible memory so this is a cheat sheet
 - DESCRIBE
 - DROP DATABASE
 - DROP TABLES
-- [ELSE()][]
+- [ELSE()][else]
+- [ENUM][enum]
 - exit
 - [EXPLAIN][exp]
 - FORMAT()
@@ -26,6 +28,7 @@ I have a terrible memory so this is a cheat sheet
 - [GROUP BY][group]
 - [IF][if]
 - [IFNULL()][inull]
+- [INDEX][index]
 - INSERT INTO (column) VALUES(value)
 - [MAX()][max]
 - MD5()
@@ -38,31 +41,37 @@ I have a terrible memory so this is a cheat sheet
 - RAND()
 - [RENAME TO][renam]
 - REPLACE INTO
-- [SELECT][select]  
+- [SELECT][select] 
+- [SET][set] 
 - SHA1()
 - SHOW COLUMNNS from
 - SHOW DATABASES
 - SHOW TABLES
+- [SHOW TABLE STATUS][sts]
 - SHOW WARNINGS
 - [SUM()][sum]
 - TRUNCATE
+- [UNIX_TIMESTAMP][unix]
 - UPDATE tablename SET column = value
-- [where][where]
+- [WHERE][where]
 
 [add]:#add
 [as]:#as
 [avg]:#avg
 [case]:#case
+[chCo]:#change-column
 [coal]:#coalesce
 [concat]:#concat
 [count]:#count
 [date]:#date
 [else]:#else
+[enum]:#enum
 [exp]:#explain
 [great]:#greatest
 [group]:#group_by
 [if]:#if
 [inull]:#ifnull
+[index]:#index
 [least]:#least
 [like]:#like
 [limit]:#limit
@@ -71,7 +80,10 @@ I have a terrible memory so this is a cheat sheet
 [order]:#order-by
 [renam]:#rename-to
 [select]:#select
+[set]:#set
+[sts]:#show-table-status
 [sum]:#sum
+[unix]:#unix-timestamp
 [where]:#where
 
 #### Table: pokemon
@@ -79,13 +91,13 @@ I have a terrible memory so this is a cheat sheet
 +----+------------+---------+------+--------+---------+------------+
 | id | name       | type    | hp   | attack | defense | trainer_id |
 +----+------------+---------+------+--------+---------+------------+
-|  1 | ghastly    | ghost   |   85 |     35 |      15 |          1 |
+|  1 |  ghastly   | ghost   |   85 |     35 |      15 |          1 |
 |  2 | bulbasaur  | grass   |  110 |     65 |      85 |          2 |
 |  3 | weedle     | bug     |   75 |     87 |      35 |          3 |
 |  4 | abra       | psychic |   85 |     45 |      90 |          4 |
 |  5 | charmander | fire    |  100 |    130 |      56 |          4 |
+|  6 | psyduck    | water   |   90 |     75 |      66 |          3 |
 +----+------------+---------+------+--------+---------+------------+
-
 ```
 
 #### Table: trainer
@@ -122,9 +134,13 @@ select name as pokemon from pokemon
 - Returns the average number based on the column rows
 - http://bit.ly/2r2FDqO
 ```sql
-	select <insert table name >  add age int(3) default "18"
+select <insert table name >  add age int(3) default "18"
 ```
 ### CASE
+```sql
+```
+
+### CHANGE COLUMN
 ```sql
 ```
 
@@ -181,12 +197,21 @@ select date(2017-5-28 07:58:30)
 ### exit
 - exits out the mysql cli
 
-### EXPLAIN
-```sql
-```
 
 ### ELSE
 ```sql
+```
+
+### ENUM 
+- Creates an array of values that can only be used in a specific column
+- https://blog.udemy.com/mysql-enum/
+```sql
+```
+
+### EXPLAIN
+- Show the data types of columns
+```sql
+explain trainer;
 ```
 
 ### FORMAT()
@@ -201,8 +226,14 @@ select date(2017-5-28 07:58:30)
 ```sql
 ```
 
+### INDEX
+- Makes querying a lot easier because sql will look for the index value first.
+	It is also essential to index a record/value  if you a creating foreign keys
+
 ### INSERT INTO (column) VALUES(value)
+- Adds rows/data into table
 ```sql
+insert into pokemon (name, type, hp, attack, defense, trainer_id) values ("psyduck", "water", 90, 75, 66, 3);
 ```
 
 ### GREATEST()
@@ -242,6 +273,8 @@ select * from tablename limit startNumber, endNumber
 Exp: This selects from tablename that will receive rows from the startNumber to the endNumber
 
 ### MAX()
+```sql
+```
 
 ### MD5()
 ```sql
@@ -292,14 +325,17 @@ Exp: orders the rows from ACS = alphabetic or numeric order, or DESC the reverse
 ### SELECT
 
 ```sql
-select <insert column name> from <insert table name>
+select name , age  from trainer
 ```
 Exp: displays all the values by the specific column name that you requested
 
 ```sql
-select <insert column name> from <insert table name>
+select * from pokemon
 ```
 Exp: displays all the columns for the table name
+
+### SET
+- Similar to enum but you can have multiple values into one row
 
 ### SHOW DATABASES
 ```sql
@@ -313,6 +349,10 @@ Exp: displays all the columns for the table name
 ```sql
 ```
 
+### SHOW TABLE STATUS
+```sql
+```
+
 ### SHOW WARNINGS
 ```sql
 ```
@@ -320,61 +360,25 @@ Exp: displays all the columns for the table name
 ### SUM()
 - You should know what this function does
 ```sql
- select sum(attack) as all_pokemon_attack_power from pokemon;
+select sum(attack) as all_pokemon_attack_power from pokemon;
 ```
 
 ### TRUNCATE
 ```sql
 ```
 
-### UPDATE 
+### UNIX_TIMESTAMP
 ```sql
-select pokemon set name = "magmar" where id = 5;
 ```
 
-### where
+### UPDATE 
+```sql
+update pokemon set name = "magmar" where id = 5;
+```
+
+### WHERE
 
 ```sql
 select hp , attack , defense from pokemon where name = "abra";
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
