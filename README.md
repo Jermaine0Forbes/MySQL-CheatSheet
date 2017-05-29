@@ -69,6 +69,7 @@ I have a terrible memory so this is a cheat sheet
 [exp]:#explain
 [great]:#greatest
 [group]:#group_by
+[home]:#sql-reminder
 [if]:#if
 [inull]:#ifnull
 [index]:#index
@@ -123,50 +124,73 @@ alter table pokemon  add speed int(3) default "18";
 ```
 Exp: adds a new column called age that can hold a maximum of three digits
 and the default value will be 18
-- ALTER TABLES
+[go back to table of contents][home]
+
+
+### ALTER TABLES
+
+[go back to table of contents][home]
 
 ###  AS
 Rename a column name as something else
 ```sql
 select name as pokemon from pokemon
 ```
+[go back to table of contents][home]
+
 ### AVG()
 - Returns the average number based on the column rows
 - http://bit.ly/2r2FDqO
 ```sql
-select <insert table name >  add age int(3) default "18"
+select avg(age) as average_age from trainer
 ```
+[go back to table of contents][home]
+
 ### CASE
+- Essentially it is the switch statement for mysql
 ```sql
+ select name , age, (case when age > 20 then 1 else 0 end ) as boolean from trainer;
 ```
+Exp: shows three columns (name, age, boolean), and boolean will return 1 if age > 20
+, or it will be 0 if the age is lesser than 20
+
+[go back to table of contents][home]
 
 ### CHANGE COLUMN
 ```sql
 ```
+[go back to table of contents][home]
+
 
 ### CREATE DATABASE
 ```sql
 ```
+[go back to table of contents][home]
 
 ### CREATE TABLE
 ```sql
 ```
+[go back to table of contents][home]
 
 ### COALESCE
 ```sql
 ```
+[go back to table of contents][home]
 
 ### CONCAT()
 ```sql
 ```
+[go back to table of contents][home]
 
 ### CONCAT_WS()
 ```sql
 ```
+[go back to table of contents][home]
 
 ### COUNT
 ```sql
 ```
+[go back to table of contents][home]
 
 ### DATE()
 
@@ -179,6 +203,7 @@ select <insert table name >  add age int(3) default "18"
 ```sql
 select date(2017-5-28 07:58:30) 
 ```
+[go back to table of contents][home]
 
 ### DELETE from tablename
 ```sql
