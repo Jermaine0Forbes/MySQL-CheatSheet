@@ -92,7 +92,7 @@ I have a terrible memory so this is a cheat sheet
 +----+------------+---------+------+--------+---------+------------+
 | id | name       | type    | hp   | attack | defense | trainer_id |
 +----+------------+---------+------+--------+---------+------------+
-|  1 |  ghastly   | ghost   |   85 |     35 |      15 |          1 |
+|  1 | ghastly    | ghost   |   85 |     35 |      15 |          1 |
 |  2 | bulbasaur  | grass   |  110 |     65 |      85 |          2 |
 |  3 | weedle     | bug     |   75 |     87 |      35 |          3 |
 |  4 | abra       | psychic |   85 |     45 |      90 |          4 |
@@ -311,11 +311,13 @@ Exp: This selects from tablename that will receive rows from the startNumber to 
         enabled like for example weight, or income. Whatever data property that is a
         number can use the NOT BETWEEN
 ```sql
-select * from <insert table name> where (number not between 1 and 20)
+select * from pokemon where (attack not between 30 and 70)
 ```
 
 ### NOW()
+- Gives you the current time in datetime format. Example: (2017-5-29 09:16:12)
 ```sql
+insert into
 ```
 
 ### ORDER BY
@@ -379,6 +381,7 @@ Exp: displays all the columns for the table name
 ```
 
 ### SHOW WARNINGS
+- well ... it shows warning messages
 ```sql
 ```
 
@@ -397,12 +400,13 @@ select sum(attack) as all_pokemon_attack_power from pokemon;
 ```
 
 ### UPDATE 
+- Updates a certain value in a column
 ```sql
 update pokemon set name = "magmar" where id = 5;
 ```
 
 ### WHERE
-
+- Specifies what particular column will be effected
 ```sql
 select hp , attack , defense from pokemon where name = "abra";
 ```
