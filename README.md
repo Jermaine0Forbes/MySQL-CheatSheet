@@ -3,7 +3,7 @@ I have a terrible memory so this is a cheat sheet
 
 
 - [ADD][add]
-- ALTER TABLES
+- [ALTER TABLE][alter]
 - [AS][as]
 - [AVG][avg]
 - [CASE()][case]
@@ -57,6 +57,7 @@ I have a terrible memory so this is a cheat sheet
 - [WHERE][where]
 
 [add]:#add
+[alter]:#alter-table
 [as]:#as
 [avg]:#avg
 [case]:#case
@@ -70,7 +71,6 @@ I have a terrible memory so this is a cheat sheet
 [exp]:#explain
 [great]:#greatest
 [group]:#group_by
-[home]:#sql-reminder
 [home]:#table-of-contents
 [if]:#if
 [inull]:#ifnull
@@ -146,15 +146,10 @@ I have a terrible memory so this is a cheat sheet
 |  4 |          4 | I'm so tired                       | I'm so tired of chas... | 2017-07-04 15:58:53 |
 |  5 |          5 | Shh! don't tell nobody             | I am secretly gay!! ... | 2017-07-04 15:58:53 |
 +----+------------+------------------------------------+-------------------------+---------------------+
-
+'
 
 ```
 
-'
-
-Explanation:
-
-[go back to table of contents][home]
 
 ## Querying
 
@@ -167,7 +162,12 @@ and the default value will be 18
 [go back to table of contents][home]
 
 
-### ALTER TABLES
+### ALTER TABLE
+
+```sql
+alter table trainers  drop age , drop sex ;
+```
+Explanation: drops the columns age and sex from trainers
 
 [go back to table of contents][home]
 
