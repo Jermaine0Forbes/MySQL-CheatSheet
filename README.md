@@ -1,4 +1,4 @@
-# SQL-Reminder
+# Table of Contents
 I have a terrible memory so this is a cheat sheet
 
 
@@ -19,6 +19,7 @@ I have a terrible memory so this is a cheat sheet
 - DESCRIBE
 - DROP DATABASE
 - DROP TABLES
+- DROP column
 - [ELSE()][else]
 - [ENUM][enum]
 - exit
@@ -41,8 +42,8 @@ I have a terrible memory so this is a cheat sheet
 - RAND()
 - [RENAME TO][renam]
 - REPLACE INTO
-- [SELECT][select] 
-- [SET][set] 
+- [SELECT][select]
+- [SET][set]
 - SHA1()
 - SHOW COLUMNNS from
 - SHOW DATABASES
@@ -70,6 +71,7 @@ I have a terrible memory so this is a cheat sheet
 [great]:#greatest
 [group]:#group_by
 [home]:#sql-reminder
+[home]:#table-of-contents
 [if]:#if
 [inull]:#ifnull
 [index]:#index
@@ -89,32 +91,70 @@ I have a terrible memory so this is a cheat sheet
 
 #### Table: pokemon
 ```sql
-+----+------------+---------+------+--------+---------+------------+
-| id | name       | type    | hp   | attack | defense | trainer_id |
-+----+------------+---------+------+--------+---------+------------+
-|  1 | ghastly    | ghost   |   85 |     35 |      15 |          1 |
-|  2 | bulbasaur  | grass   |  110 |     65 |      85 |          2 |
-|  3 | weedle     | bug     |   75 |     87 |      35 |          3 |
-|  4 | abra       | psychic |   85 |     45 |      90 |          4 |
-|  5 | charmander | fire    |  100 |    130 |      56 |          4 |
-|  6 | psyduck    | water   |   90 |     75 |      66 |          3 |
-+----+------------+---------+------+--------+---------+------------+
++----+------------+---------+-----+--------+---------+-------+------------+
+| id | name       | type    | hp  | attack | defense | speed | trainer_id |
++----+------------+---------+-----+--------+---------+-------+------------+
+|  1 | ghastly    | ghost   |  30 |     35 |      30 |    80 |          1 |
+|  2 | bulbasaur  | grass   | 110 |     65 |      85 |    27 |          2 |
+|  3 | weedle     | bug     |  75 |     87 |      35 |    50 |          3 |
+|  4 | abra       | psychic |  85 |     45 |      90 |    60 |          4 |
+|  5 | charmander | fire    | 100 |    130 |      56 |    46 |          1 |
+|  6 | psyduck    | water   |  90 |     75 |      66 |    33 |          3 |
+|  7 | ekans      | poison  |  35 |     60 |      44 |    55 |          4 |
+|  8 | geodude    | rock    |  40 |     80 |     100 |    20 |          5 |
+|  9 | staryu     | water   |  30 |     45 |      55 |    85 |          3 |
+| 10 | dragonair  | dragon  |  61 |     84 |      65 |    70 |          2 |
++----+------------+---------+-----+--------+---------+-------+------------+
+
 ```
 
-#### Table: trainer
+#### Table: trainers
+
 ```sql
-+----+-------------------+------+
-| id | name              | age  |
-+----+-------------------+------+
-|  1 | Ash Ketchup       |   14 |
-|  2 | Gary              |   16 |
-|  3 | Waldo             |   37 |
-|  4 | George  Jefferson |   63 |
-+----+-------------------+------+
++----+------------+-----------+-----+-----+---------------------+
+| id | first_name | last_name | age | sex | trainer_registered  |
++----+------------+-----------+-----+-----+---------------------+
+|  1 | Ash        | Ketchup   |  14 | m   | 2017-07-02 22:07:46 |
+|  2 | Gary       | Mustard   |  16 | m   | 2017-07-02 22:08:43 |
+|  3 | Misty      | Stone     |  15 | f   | 2017-07-02 22:10:15 |
+|  4 | Jessie     | Magenta   |  27 | f   | 2017-07-02 22:10:15 |
+|  5 | Brock      | Therock   |  24 | m   | 2017-07-04 15:14:39 |
++----+------------+-----------+-----+-----+---------------------+
+
+```
+#### Table: records
+
+```sql
++----+------------+--------+-------------+-------------------------+
+| id | trainer_id | status | opponent_id | description             |
++----+------------+--------+-------------+-------------------------+
+|  1 |          1 | win    |           4 | Ash whooped that ass... |
+|  2 |          5 | Loss   |           2 | Dragonair dominated ... |
+|  3 |          4 | Win    |           3 | Jessie surmounted mi... |
++----+------------+--------+-------------+-------------------------+
+
+```
+#### Table: journal
+
+```sql
++----+------------+------------------------------------+-------------------------+---------------------+
+| id | trainer_id | title                              | body                    | date                |
++----+------------+------------------------------------+-------------------------+---------------------+
+|  1 |          1 | I'm going to be the greatest       | Man, I'm going to be... | 2017-07-04 15:58:53 |
+|  2 |          2 | Ash is such a  boob                | Ash, my evil rival e... | 2017-07-04 15:58:53 |
+|  3 |          3 | I will not be defined by my gender | I will not let any m... | 2017-07-04 15:58:53 |
+|  4 |          4 | I'm so tired                       | I'm so tired of chas... | 2017-07-04 15:58:53 |
+|  5 |          5 | Shh! don't tell nobody             | I am secretly gay!! ... | 2017-07-04 15:58:53 |
++----+------------+------------------------------------+-------------------------+---------------------+
+
 
 ```
 
+'
 
+Explanation:
+
+[go back to table of contents][home]
 
 ## Querying
 
@@ -122,7 +162,7 @@ I have a terrible memory so this is a cheat sheet
 ```sql
 alter table pokemon  add speed int(3) default "18";
 ```
-Exp: adds a new column called age that can hold a maximum of three digits
+Explanation: adds a new column called age that can hold a maximum of three digits
 and the default value will be 18
 [go back to table of contents][home]
 
@@ -146,6 +186,7 @@ select avg(age) as average_age from trainer
 ```
 [go back to table of contents][home]
 
+
 ### CASE
 - Essentially it is the switch statement for mysql
 ```sql
@@ -156,40 +197,55 @@ Exp: shows three columns (name, age, boolean), and boolean will return 1 if age 
 
 [go back to table of contents][home]
 
+
 ### CHANGE COLUMN
 ```sql
 ```
+Explanation:
+
 [go back to table of contents][home]
 
 
 ### CREATE DATABASE
 ```sql
 ```
+Explanation:
+
 [go back to table of contents][home]
 
 ### CREATE TABLE
 ```sql
 ```
+Explanation:
+
 [go back to table of contents][home]
 
 ### COALESCE
 ```sql
 ```
+Explanation:
+
 [go back to table of contents][home]
 
 ### CONCAT()
 ```sql
 ```
+Explanation:
+
 [go back to table of contents][home]
 
 ### CONCAT_WS()
 ```sql
 ```
+Explanation:
+
 [go back to table of contents][home]
 
 ### COUNT
 ```sql
 ```
+Explanation:
+
 [go back to table of contents][home]
 
 ### DATE()
@@ -198,88 +254,159 @@ Exp: shows three columns (name, age, boolean), and boolean will return 1 if age 
 		is it grabs just the date alone. So this function is only useful if you have a datetime
 		value and you want to convert it to just a date
 
--http://bit.ly/2qqpOLU
+- http://bit.ly/2qqpOLU
 
 ```sql
-select date(2017-5-28 07:58:30) 
+select date(2017-5-28 07:58:30) as current_date
 ```
+Explanation:
+
 [go back to table of contents][home]
 
 ### DELETE from tablename
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
+
 ### DESCRIBE
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
+
 ### DROP DATABASE
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### DROP TABLES
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### exit
 - exits out the mysql cli
 
+Explanation:
+
+[go back to table of contents][home]
 
 ### ELSE
 ```sql
-```
 
-### ENUM 
+```
+Explanation:
+
+[go back to table of contents][home]
+
+### ENUM
 - Creates an array of values that can only be used in a specific column
 - https://blog.udemy.com/mysql-enum/
 ```sql
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### EXPLAIN
 - Show the data types of columns
 ```sql
-explain trainer;
+explain trainers;
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### FORMAT()
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### IF()
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### IFNULL()
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### INDEX
 - Makes querying a lot easier because sql will look for the index value first.
 	It is also essential to index a record/value  if you a creating foreign keys
+```sql
+create table pokemon (
+id int not null unsigned auto_increment,
+name varchar(40),
+type varchar(20),
+attack int(3),
+defense int(3),
+trainer_id int unsigned,
+index(trainer_id)
+)
+```
 
 ### INSERT INTO (column) VALUES(value)
 - Adds rows/data into table
 ```sql
 insert into pokemon (name, type, hp, attack, defense, trainer_id) values ("psyduck", "water", 90, 75, 66, 3);
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### GREATEST()
 ```sql
 
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### GROUP BY
 ```sql
 
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### HAVING
 ```sql
 
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### LEAST()
 ```sql
 
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 
 ### LIKE
@@ -288,6 +415,9 @@ with a capital B. And returns all the rows that have that
 ```sql
 select * from trainer where  name like "A%"
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### LIMIT
 - Limits the number of documents that you receive from the query
@@ -295,15 +425,25 @@ select * from trainer where  name like "A%"
 ```sql
 select * from tablename limit startNumber, endNumber
 ```
-Exp: This selects from tablename that will receive rows from the startNumber to the endNumber
+Explanation: This selects from tablename that will receive rows from the startNumber to the endNumber
+
+[go back to table of contents][home]
 
 ### MAX()
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### MD5()
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### NOT BETWEEN
 -  This expression returns values where the property number does not have 1-20.
@@ -313,12 +453,18 @@ Exp: This selects from tablename that will receive rows from the startNumber to 
 ```sql
 select * from pokemon where (attack not between 30 and 70)
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### NOW()
 - Gives you the current time in datetime format. Example: (2017-5-29 09:16:12)
 ```sql
 insert into
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### ORDER BY
  -  this expression will order the rows of data based on the property name
@@ -331,54 +477,98 @@ select * from  trainer order by name
 ```sql
 select * from  trainer order by age DESC/ASC
 ```
-Exp: orders the rows from ACS = alphabetic or numeric order, or DESC the reverse
+Explanation: orders the rows from ACS = alphabetic or numeric order, or DESC the reverse
+
+[go back to table of contents][home]
+
 
 ### RAND()
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### RENAME TO()
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### REPLACE INTO
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### SHA1()
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### SELECT
 
 ```sql
 select name , age  from trainer
 ```
-Exp: displays all the values by the specific column name that you requested
+Explanation: displays all the values by the specific column name that you requested
 
 ```sql
 select * from pokemon
 ```
-Exp: displays all the columns for the table name
+Explanation: displays all the columns for the table name
+
+[go back to table of contents][home]
 
 ### SET
 - Similar to enum but you can have multiple values into one row
 
+```sql
+
+```
+Explanation:
+
+[go back to table of contents][home]
+
 ### SHOW DATABASES
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### SHOW TABLES
 ```sql
-```
 
-### SHOW COLUMNNS from
-```sql
 ```
+Explanation:
+
+[go back to table of contents][home]
+
+### SHOW COLUMNS from
+```sql
+
+```
+Explanation:
+
+[go back to table of contents][home]
 
 ### SHOW TABLE STATUS
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### SHOW WARNINGS
 - well ... it shows warning messages
@@ -390,16 +580,28 @@ Exp: displays all the columns for the table name
 ```sql
 select sum(attack) as all_pokemon_attack_power from pokemon;
 ```
+Explanation:
+
+[go back to table of contents][home]
+
 
 ### TRUNCATE
 ```sql
+
 ```
+Explanation:
+
+[go back to table of contents][home]
 
 ### UNIX_TIMESTAMP
 ```sql
-```
 
-### UPDATE 
+```
+Explanation:
+
+[go back to table of contents][home]
+
+### UPDATE
 - Updates a certain value in a column
 ```sql
 update pokemon set name = "magmar" where id = 5;
@@ -410,4 +612,3 @@ update pokemon set name = "magmar" where id = 5;
 ```sql
 select hp , attack , defense from pokemon where name = "abra";
 ```
-
