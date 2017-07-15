@@ -10,10 +10,9 @@ I have a terrible memory so this is a cheat sheet
 - [CHANGE COLUMN][chCo]
 - [COALESCE()][coal]
 - [CONCAT()][concat]
-- CONCAT_WS()
+- [CONCAT_WS()][concat-ws]
 - [COUNT()][count]
-- CREATE DATABASE
-- CREATE TABLE
+- [CREATE][create] 
 - [DATE()][date]
 - DELETE from tablename  
 - DESCRIBE
@@ -64,7 +63,9 @@ I have a terrible memory so this is a cheat sheet
 [chCo]:#change-column
 [coal]:#coalesce
 [concat]:#concat
+[concat-ws]:#concat_ws
 [count]:#count
+[create]:#create
 [date]:#date
 [else]:#else
 [enum]:#enum
@@ -200,51 +201,120 @@ Exp: shows three columns (name, age, boolean), and boolean will return 1 if age 
 
 ### CHANGE COLUMN
 ```sql
+ alter table trainers change sex sex varchar(6);
+
 ```
-Explanation:
+Explanation: changes the column sex to contain 6 characters instead
+of the original data type only holding 1 character
 
 [go back to table of contents][home]
 
 
-### CREATE DATABASE
+### CREATE 
 ```sql
+ create table records (
+ 	id int unsigned auto_increment not null,
+ 	primary key (id),
+ 	trainer_id int unsigned,
+ 	index(trainer_id),
+ 	status varchar(5),
+ 	opponent_id int unsigned,
+ 	index(opponent_id),
+ 	description text
+ );
 ```
-Explanation:
+Explanation: Creates a table called records and adds in
+the columns
 
-[go back to table of contents][home]
-
-### CREATE TABLE
 ```sql
+
+ create database Pokemon;
 ```
-Explanation:
+Explanation: creates a database called Pokemon
 
 [go back to table of contents][home]
+
 
 ### COALESCE
+- coalesce can take in multiple columns within the function and 
+it goes down each row until one of the column has a null value.
+Once it a row has a null value it will switch to the next column until
+a row has a null value.
 ```sql
+ +----+--------------+------+------+--------+
+| id | name         | age  | sex  | weight |
++----+--------------+------+------+--------+
+|  1 | jacob ruler  |   24 | m    |   NULL |
+|  3 | jane fonda   |   37 | NULL |    142 |
+|  4 | nick gordon  | NULL | m    |    194 |
+|  5 | yulia swartz |   22 | f    |    126 |
++----+--------------+------+------+--------+
+
+ select name , coalesce(age,sex) as result from user;
+
+ +--------------+--------+
+| name         | result |
++--------------+--------+
+| jacob ruler  | 24     |
+| jane fonda   | 37     |
+| nick gordon  | m      |
+| yulia swartz | 22     |
++--------------+--------+
+
 ```
-Explanation:
+Explanation: I had to make up a table to show how it works. So there is a
+table called user that has name, age, sex, and weight. Some of these rows have
+null, so when you coalesce age and sex from user it will first look for ages
+and if a row has null value for age it will switch to sex.
 
 [go back to table of contents][home]
 
 ### CONCAT()
 ```sql
+ select concat(first_name, " ", last_name) as name from trainers;
+
+ +----------------+
+| name           |
++----------------+
+| Ash Ketchup    |
+| Gary Mustard   |
+| Misty Stone    |
+| Jessie Magenta |
+| Brock Therock  |
++----------------+
+
 ```
-Explanation:
+Explanation: Combines columns together to create a new field. For example,
+the first name , the last name, and whitespace " ". Created the name field.
 
 [go back to table of contents][home]
 
 ### CONCAT_WS()
 ```sql
+   select concat_ws('--', first_name, last_name,sex) as title from trainers;
+
++--------------------+
+| title              |
++--------------------+
+| Ash--Ketchup--m    |
+| Gary--Mustard--m   |
+| Misty--Stone--f    |
+| Jessie--Magenta--f |
+| Brock--Therock--m  |
++--------------------+
+
+
 ```
-Explanation:
+Explanation: The first parameter is the string that you are going to use to seperate
+the column values from each other. In this example, I just used "--"
 
 [go back to table of contents][home]
 
 ### COUNT
 ```sql
+	select count(name) as all_the_pokemon from pokemon;
 ```
-Explanation:
+Explanation: Counts all the rows from a specific column;
 
 [go back to table of contents][home]
 
