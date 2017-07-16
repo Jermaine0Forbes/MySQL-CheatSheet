@@ -14,11 +14,9 @@ I have a terrible memory so this is a cheat sheet
 - [COUNT()][count]
 - [CREATE][create] 
 - [DATE()][date]
-- DELETE from tablename  
-- DESCRIBE
-- DROP DATABASE
-- DROP TABLES
-- DROP column
+- [DELETE][delete] 
+- [DESCRIBE][describe]
+- [DROP][drop]
 - [ELSE()][else]
 - [ENUM][enum]
 - exit
@@ -67,6 +65,9 @@ I have a terrible memory so this is a cheat sheet
 [count]:#count
 [create]:#create
 [date]:#date
+[delete]:#delete
+[describe]:#describe
+[drop]:#drop
 [else]:#else
 [enum]:#enum
 [exp]:#explain
@@ -160,6 +161,7 @@ alter table pokemon  add speed int(3) default "18";
 ```
 Explanation: adds a new column called age that can hold a maximum of three digits
 and the default value will be 18
+
 [go back to table of contents][home]
 
 
@@ -334,43 +336,63 @@ Explanation:
 [go back to table of contents][home]
 
 ### DELETE from tablename
+- deletes a row from a table
+
 ```sql
+ delete from pokemon where name = "mewto";
 
 ```
-Explanation:
+Explanation: deletes any row from pokemon where the name 
+equals mewto
 
 [go back to table of contents][home]
 
 ### DESCRIBE
+- shows the schema structure of a table;
 ```sql
+ describe records;
+ +-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| id          | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| trainer_id  | int(10) unsigned | NO   | MUL | NULL    |                |
+| status      | varchar(5)       | NO   |     | NULL    |                |
+| opponent_id | int(10) unsigned | NO   | MUL | NULL    |                |
+| description | text             | NO   |     | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
 
 ```
-Explanation:
+Explanation: its not rocket science, you will get this
 
 [go back to table of contents][home]
 
-### DROP DATABASE
+### DROP 
+
+#### DROP DATABASE
+- self explanatory
 ```sql
-
+	drop database Pokemon;
 ```
-Explanation:
+Explanation: not rocket science
 
-[go back to table of contents][home]
-
-### DROP TABLES
+#### DROP TABLES
+- self explanatory
 ```sql
-
+	drop table journal;
 ```
-Explanation:
+Explanation: simple
+
+
+#### DROP COLUMN
+
+- self explanatory
+```sql
+ alter table trainers drop column sex
+```
+Explanation: removes column sex from the trainers table;
 
 [go back to table of contents][home]
 
-### exit
-- exits out the mysql cli
-
-Explanation:
-
-[go back to table of contents][home]
 
 ### ELSE
 ```sql
@@ -385,6 +407,14 @@ Explanation:
 - https://blog.udemy.com/mysql-enum/
 ```sql
 ```
+Explanation:
+
+[go back to table of contents][home]
+
+
+### exit
+- exits out the mysql cli
+
 Explanation:
 
 [go back to table of contents][home]
