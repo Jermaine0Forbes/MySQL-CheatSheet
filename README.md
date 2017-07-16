@@ -212,7 +212,9 @@ of the original data type only holding 1 character
 [go back to table of contents][home]
 
 
-### CREATE 
+### CREATE
+
+#### CREATE TABLE 
 ```sql
  create table records (
  	id int unsigned auto_increment not null,
@@ -228,6 +230,7 @@ of the original data type only holding 1 character
 Explanation: Creates a table called records and adds in
 the columns
 
+#### CREATE DATABASE
 ```sql
 
  create database Pokemon;
@@ -395,19 +398,32 @@ Explanation: removes column sex from the trainers table;
 
 
 ### ELSE
+- the last option for the if or case function.
+Apparently you can create functions in mysql so I have to wait
+until I start learning how to do that
+
 ```sql
+	
+ select first_name as name , (if sex= "m" then "male" else "female") as sex from trainers;
 
 ```
-Explanation:
+Explanation: if the sex of the trainer is m then insert the string male, 
+else put the string female
 
 [go back to table of contents][home]
 
 ### ENUM
 - Creates an array of values that can only be used in a specific column
 - https://blog.udemy.com/mysql-enum/
+- You can insert the value of the enum by the positions number
 ```sql
+  
+  alter table trainers add race enum ('white', 'black', 'asian', 'mixed') default 'asian';
+
 ```
-Explanation:
+Explanation: Adds a new column to the table called race and it can only have
+4 different values inserted into it. You can also insert the value by number.
+For example: if you wanted to insert white you will be put the number 1 
 
 [go back to table of contents][home]
 
@@ -415,16 +431,17 @@ Explanation:
 ### exit
 - exits out the mysql cli
 
-Explanation:
+Explanation: self explanatory
 
 [go back to table of contents][home]
 
 ### EXPLAIN
 - Show the data types of columns
 ```sql
-explain trainers;
+  explain trainers;
 ```
-Explanation:
+Explanation: If this is not similar, then this exactly like the describe command
+you essentially see the schema structure of the table
 
 [go back to table of contents][home]
 
