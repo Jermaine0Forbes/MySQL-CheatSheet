@@ -7,13 +7,13 @@ I have a terrible memory so this is a cheat sheet
 - [AS][as]
 - [AVG][avg]
 - [CASE()][case]
-- [CHANGE COLUMN][chCo]
+- [CHANGE][change]
 - [COALESCE()][coal]
 - [CONCAT()][concat]
 - CONCAT_WS()
 - [COUNT()][count]
-- CREATE DATABASE
-- CREATE TABLE
+- [CREATE DATABASE][creD]
+- [CREATE TABLE][creT]
 - [DATE()][date]
 - DELETE from tablename  
 - DESCRIBE
@@ -61,7 +61,9 @@ I have a terrible memory so this is a cheat sheet
 [as]:#as
 [avg]:#avg
 [case]:#case
-[chCo]:#change-column
+[change]:#change
+[creD]:#create-database
+[creT]:#create-table
 [coal]:#coalesce
 [concat]:#concat
 [count]:#count
@@ -159,6 +161,7 @@ alter table pokemon  add speed int(3) default "18";
 ```
 Explanation: adds a new column called age that can hold a maximum of three digits
 and the default value will be 18
+
 [go back to table of contents][home]
 
 
@@ -184,6 +187,8 @@ select name as pokemon from pokemon
 ```sql
 select avg(age) as average_age from trainer
 ```
+Explanation: Averages the number of a column
+
 [go back to table of contents][home]
 
 
@@ -192,31 +197,44 @@ select avg(age) as average_age from trainer
 ```sql
  select name , age, (case when age > 20 then 1 else 0 end ) as boolean from trainer;
 ```
-Exp: shows three columns (name, age, boolean), and boolean will return 1 if age > 20
+Explanation: shows three columns (name, age, boolean), and boolean will return 1 if age > 20
 , or it will be 0 if the age is lesser than 20
 
 [go back to table of contents][home]
 
 
-### CHANGE COLUMN
+### CHANGE
+
 ```sql
+alter table journal change date date default date;
 ```
-Explanation:
+Explanation: Changes the date column datatype to date
 
 [go back to table of contents][home]
 
 
 ### CREATE DATABASE
 ```sql
+ create database Pokemon
 ```
-Explanation:
+Explanation: creates a new database called Pokemon
 
 [go back to table of contents][home]
 
 ### CREATE TABLE
 ```sql
+ create table journal (
+ id int not null auto_increment unsigned,
+ primary key (id),
+ trainer_id int unsigned,
+ index(trainer_id),
+ status varchar(5),
+ opponent_Id int unsigned,
+ index(opponent_id),
+ description text
+ );
 ```
-Explanation:
+Explanation: creates a new table and you can specifiy what columns you want in the table
 
 [go back to table of contents][home]
 
