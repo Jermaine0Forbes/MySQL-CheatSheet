@@ -10,16 +10,13 @@ I have a terrible memory so this is a cheat sheet
 - [CHANGE][change]
 - [COALESCE()][coal]
 - [CONCAT()][concat]
-- CONCAT_WS()
+- [CONCAT_WS()][concat-ws]
 - [COUNT()][count]
-- [CREATE DATABASE][creD]
-- [CREATE TABLE][creT]
+- [CREATE][create]
 - [DATE()][date]
-- DELETE from tablename  
-- DESCRIBE
-- DROP DATABASE
-- DROP TABLES
-- DROP column
+- [DELETE][delete]
+- [DESCRIBE][describe]
+- [DROP][drop]
 - [ELSE()][else]
 - [ENUM][enum]
 - exit
@@ -66,8 +63,13 @@ I have a terrible memory so this is a cheat sheet
 [creT]:#create-table
 [coal]:#coalesce
 [concat]:#concat
+[concat-ws]:#concat_ws
 [count]:#count
+[create]:#create
 [date]:#date
+[delete]:#delete
+[describe]:#describe
+[drop]:#drop
 [else]:#else
 [enum]:#enum
 [exp]:#explain
@@ -206,63 +208,123 @@ Explanation: shows three columns (name, age, boolean), and boolean will return 1
 ### CHANGE
 
 ```sql
-alter table journal change date date default date;
+ alter table trainers change sex sex varchar(6);
+
 ```
-Explanation: Changes the date column datatype to date
+Explanation: changes the column sex to contain 6 characters instead
+of the original data type only holding 1 character
 
 [go back to table of contents][home]
 
 
-### CREATE DATABASE
-```sql
- create database Pokemon
-```
-Explanation: creates a new database called Pokemon
+### CREATE
 
-[go back to table of contents][home]
-
-### CREATE TABLE
+#### CREATE TABLE
 ```sql
- create table journal (
- id int not null auto_increment unsigned,
- primary key (id),
- trainer_id int unsigned,
- index(trainer_id),
- status varchar(5),
- opponent_Id int unsigned,
- index(opponent_id),
- description text
+ create table records (
+ 	id int unsigned auto_increment not null,
+ 	primary key (id),
+ 	trainer_id int unsigned,
+ 	index(trainer_id),
+ 	status varchar(5),
+ 	opponent_id int unsigned,
+ 	index(opponent_id),
+ 	description text
  );
 ```
-Explanation: creates a new table and you can specifiy what columns you want in the table
+Explanation: Creates a table called records and adds in
+the columns
+
+#### CREATE DATABASE
+```sql
+
+ create database Pokemon;
+```
+Explanation: creates a database called Pokemon
 
 [go back to table of contents][home]
 
+
 ### COALESCE
+- coalesce can take in multiple columns within the function and
+it goes down each row until one of the column has a null value.
+Once it a row has a null value it will switch to the next column until
+a row has a null value.
 ```sql
+ +----+--------------+------+------+--------+
+| id | name         | age  | sex  | weight |
++----+--------------+------+------+--------+
+|  1 | jacob ruler  |   24 | m    |   NULL |
+|  3 | jane fonda   |   37 | NULL |    142 |
+|  4 | nick gordon  | NULL | m    |    194 |
+|  5 | yulia swartz |   22 | f    |    126 |
++----+--------------+------+------+--------+
+
+ select name , coalesce(age,sex) as result from user;
+
+ +--------------+--------+
+| name         | result |
++--------------+--------+
+| jacob ruler  | 24     |
+| jane fonda   | 37     |
+| nick gordon  | m      |
+| yulia swartz | 22     |
++--------------+--------+
+
 ```
-Explanation:
+Explanation: I had to make up a table to show how it works. So there is a
+table called user that has name, age, sex, and weight. Some of these rows have
+null, so when you coalesce age and sex from user it will first look for ages
+and if a row has null value for age it will switch to sex.
 
 [go back to table of contents][home]
 
 ### CONCAT()
 ```sql
+ select concat(first_name, " ", last_name) as name from trainers;
+
+ +----------------+
+| name           |
++----------------+
+| Ash Ketchup    |
+| Gary Mustard   |
+| Misty Stone    |
+| Jessie Magenta |
+| Brock Therock  |
++----------------+
+
 ```
-Explanation:
+Explanation: Combines columns together to create a new field. For example,
+the first name , the last name, and whitespace " ". Created the name field.
 
 [go back to table of contents][home]
 
 ### CONCAT_WS()
 ```sql
+   select concat_ws('--', first_name, last_name,sex) as title from trainers;
+
++--------------------+
+| title              |
++--------------------+
+| Ash--Ketchup--m    |
+| Gary--Mustard--m   |
+| Misty--Stone--f    |
+| Jessie--Magenta--f |
+| Brock--Therock--m  |
++--------------------+
+
+
 ```
-Explanation:
+Explanation: The first parameter is the string that you are going to use to seperate
+the column values from each other. In this example, I just used "--"
 
 [go back to table of contents][home]
 
 ### COUNT
 ```sql
+	select count(name) as all_the_pokemon from pokemon;
 ```
-Explanation:
+Explanation: Counts all the rows from a specific column;
 
 [go back to table of contents][home]
 
@@ -282,67 +344,109 @@ Explanation:
 [go back to table of contents][home]
 
 ### DELETE from tablename
+- deletes a row from a table
+
 ```sql
+ delete from pokemon where name = "mewto";
 
 ```
-Explanation:
+Explanation: deletes any row from pokemon where the name
+equals mewto
 
 [go back to table of contents][home]
 
 ### DESCRIBE
+- shows the schema structure of a table;
 ```sql
+ describe records;
+ +-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| id          | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| trainer_id  | int(10) unsigned | NO   | MUL | NULL    |                |
+| status      | varchar(5)       | NO   |     | NULL    |                |
+| opponent_id | int(10) unsigned | NO   | MUL | NULL    |                |
+| description | text             | NO   |     | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
 
 ```
-Explanation:
+Explanation: its not rocket science, you will get this
 
 [go back to table of contents][home]
 
-### DROP DATABASE
+### DROP
+
+#### DROP DATABASE
+- self explanatory
 ```sql
-
+	drop database Pokemon;
 ```
-Explanation:
+Explanation: not rocket science
 
-[go back to table of contents][home]
-
-### DROP TABLES
+#### DROP TABLES
+- self explanatory
 ```sql
-
+	drop table journal;
 ```
-Explanation:
+Explanation: simple
+
+
+#### DROP COLUMN
+
+- self explanatory
+```sql
+ alter table trainers drop column sex
+```
+Explanation: removes column sex from the trainers table;
 
 [go back to table of contents][home]
 
-### exit
-- exits out the mysql cli
-
-Explanation:
-
-[go back to table of contents][home]
 
 ### ELSE
+- the last option for the if or case function.
+Apparently you can create functions in mysql so I have to wait
+until I start learning how to do that
+
 ```sql
 
+ select first_name as name , (if sex= "m" then "male" else "female") as sex from trainers;
+
 ```
-Explanation:
+Explanation: if the sex of the trainer is m then insert the string male,
+else put the string female
 
 [go back to table of contents][home]
 
 ### ENUM
 - Creates an array of values that can only be used in a specific column
 - https://blog.udemy.com/mysql-enum/
+- You can insert the value of the enum by the positions number
 ```sql
+
+  alter table trainers add race enum ('white', 'black', 'asian', 'mixed') default 'asian';
+
 ```
-Explanation:
+Explanation: Adds a new column to the table called race and it can only have
+4 different values inserted into it. You can also insert the value by number.
+For example: if you wanted to insert white you will be put the number 1
+
+[go back to table of contents][home]
+
+
+### exit
+- exits out the mysql cli
+
+Explanation: self explanatory
 
 [go back to table of contents][home]
 
 ### EXPLAIN
 - Show the data types of columns
 ```sql
-explain trainers;
+  explain trainers;
 ```
-Explanation:
+Explanation: If this is not similar, then this exactly like the describe command
+you essentially see the schema structure of the table
 
 [go back to table of contents][home]
 
