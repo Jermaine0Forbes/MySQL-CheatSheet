@@ -451,18 +451,52 @@ you essentially see the schema structure of the table
 [go back to table of contents][home]
 
 ### FORMAT()
+- determines how many decimal places will be presented in the value and also rounds
+the value
 ```sql
+    +----+-----------+-----------+-------+
+    | id | weight_kg | height_km | name  |
+    +----+-----------+-----------+-------+
+    |  1 |   5.44311 |   0.00046 | fido  |
+    |  2 |  10.88620 |   0.00091 | tiger |
+    |  3 |  16.32930 |   0.00167 | alex  |
+    +----+-----------+-----------+-------+
+
+    select name , format(weight_kg, 3) as kilogram from dog;
+
+    +-------+----------+
+    | name  | kilogram |
+    +-------+----------+
+    | fido  | 5.443    |
+    | tiger | 10.886   |
+    | alex  | 16.329   |
+    +-------+----------+
 
 ```
-Explanation:
+Explanation: I created a table called dog where the columns have the name of the dog,
+the weight in kilograms, and the height in kilometers. With the format function, it only
+shows 3 decimal places of the weight of the dogs
 
 [go back to table of contents][home]
 
 ### IF()
+- the if function has 3 parameters if( expression, true, false)
 ```sql
+    select  name , hp , if(attack < 50, 'too weak', attack) as attack from pokemon limit 5;
+
+    +------------+-----+----------+
+    | name       | hp  | attack   |
+    +------------+-----+----------+
+    | ghastly    |  30 | too weak |
+    | bulbasaur  | 110 | 65       |
+    | weedle     |  75 | 87       |
+    | abra       |  85 | too weak |
+    | charmander | 100 | 130      |
+    +------------+-----+----------+
 
 ```
-Explanation:
+Explanation: if the attack column of a row is less than 50, then put too weak. Other than
+that, put the regular value.
 
 [go back to table of contents][home]
 
