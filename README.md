@@ -19,15 +19,15 @@ I have a terrible memory so this is a cheat sheet
 - [DROP][drop]
 - [ELSE()][else]
 - [ENUM][enum]
-- exit
+- [exit][exit]
 - [EXPLAIN][exp]
-- FORMAT()
+- [FORMAT()][format]
 - [GREATEST()][great]
 - [GROUP BY][group]
 - [IF][if]
 - [IFNULL()][inull]
 - [INDEX][index]
-- INSERT INTO (column) VALUES(value)
+- [INSERT][insert]
 - [MAX()][max]
 - MD5()
 - [NOT BETWEEN][not-between]
@@ -72,13 +72,16 @@ I have a terrible memory so this is a cheat sheet
 [drop]:#drop
 [else]:#else
 [enum]:#enum
+[exit]:#exit
 [exp]:#explain
+[format]:#format
 [great]:#greatest
 [group]:#group_by
 [home]:#table-of-contents
 [if]:#if
 [inull]:#ifnull
 [index]:#index
+[insert]:#insert
 [least]:#least
 [like]:#like
 [limit]:#limit
@@ -502,9 +505,30 @@ that, put the regular value.
 
 ### IFNULL()
 ```sql
++----+-----------------+------+------+--------+
+| id | name            | age  | sex  | weight |
++----+-----------------+------+------+--------+
+|  1 | jacob ruler     |   24 | m    |   NULL |
+|  3 | jane fonda      |   37 | NULL |    142 |
+|  4 | nick gordon     | NULL | m    |    194 |
+|  6 | miranda johnson |   17 | f    |   NULL |
+|  7 | alex pennester  |   63 | NULL |    243 |
++----+-----------------+------+------+--------+
+
+select name , ifnull(age, sex) from user limit 5;
+
++-----------------+-----------------+
+| name            | ifnull(age,sex) |
++-----------------+-----------------+
+| jacob ruler     | 24              |
+| jane fonda      | 37              |
+| nick gordon     | m               |
+| miranda johnson | 17              |
+| alex pennester  | 63              |
++-----------------+-----------------+
 
 ```
-Explanation:
+Explanation: this is pretty much **coalesce**. I do not see much of a difference.
 
 [go back to table of contents][home]
 
@@ -523,7 +547,7 @@ index(trainer_id)
 )
 ```
 
-### INSERT INTO (column) VALUES(value)
+### INSERT 
 - Adds rows/data into table
 ```sql
 insert into pokemon (name, type, hp, attack, defense, trainer_id) values ("psyduck", "water", 90, 75, 66, 3);
