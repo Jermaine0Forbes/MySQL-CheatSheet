@@ -558,9 +558,25 @@ Explanation:
 
 ### GREATEST()
 ```sql
+ select name, attack, defense, speed, greatest(attack, defense, speed) as best from pokemon;
+
+ +------------+--------+---------+-------+------+
+| name       | attack | defense | speed | best |
++------------+--------+---------+-------+------+
+| ghastly    |     35 |      30 |    80 |   80 |
+| bulbasaur  |     65 |      85 |    27 |   85 |
+| weedle     |     87 |      35 |    50 |   87 |
+| abra       |     45 |      90 |    60 |   90 |
+| charmander |    130 |      56 |    46 |  130 |
+| psyduck    |     75 |      66 |    33 |   75 |
+| ekans      |     60 |      44 |    55 |   60 |
+| geodude    |     80 |     100 |    20 |  100 |
+| staryu     |     45 |      55 |    85 |   85 |
+| dragonair  |     84 |      65 |    70 |   84 |
++------------+--------+---------+-------+------+
 
 ```
-Explanation:
+Explanation: Chooses the greatest number based on the columns you add in the parameter 
 
 [go back to table of contents][home]
 
