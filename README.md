@@ -581,26 +581,107 @@ Explanation: Chooses the greatest number based on the columns you add in the par
 [go back to table of contents][home]
 
 ### GROUP BY
+- group tells sql what column you are going to group the multiple values to
+and orders them in that manner. So lets say there is a customer named "bob"
+ and he made multiple purchases to a store name "macy's". If I wanted to show
+ the multiple purchases that were made by bob, I would group it by bob
 ```sql
+    
+    
+    +----+------------+---------+-----+--------+---------+-------+------------+
+    | id | name       | type    | hp  | attack | defense | speed | trainer_id |
+    +----+------------+---------+-----+--------+---------+-------+------------+
+    |  1 | ghastly    | ghost   |  30 |     35 |      30 |    80 |          1 |
+    |  2 | bulbasaur  | grass   | 110 |     65 |      85 |    27 |          2 |
+    |  3 | weedle     | bug     |  75 |     87 |      35 |    50 |          3 |
+    |  4 | abra       | psychic |  85 |     45 |      90 |    60 |          4 |
+    |  5 | charmander | fire    | 100 |    130 |      56 |    46 |          1 |
+    |  6 | psyduck    | water   |  90 |     75 |      66 |    33 |          3 |
+    |  7 | ekans      | poison  |  35 |     60 |      44 |    55 |          4 |
+    |  8 | geodude    | rock    |  40 |     80 |     100 |    20 |          5 |
+    |  9 | staryu     | water   |  30 |     45 |      55 |    85 |          3 |
+    | 10 | dragonair  | dragon  |  61 |     84 |      65 |    70 |          2 |
+    +----+------------+---------+-----+--------+---------+-------+------------+
+
+
+    +----+------------+-----------+
+    | id | first_name | last_name |
+    +----+------------+-----------+
+    |  1 | Ash        | Ketchup   |
+    |  2 | Gary       | Mustard   |
+    |  3 | Misty      | Stone     |
+    |  4 | Jessie     | Magenta   |
+    |  5 | Brock      | Therock   |
+    +----+------------+-----------+
+
+    select concat(t.first_name, " ", t.last_name) as trainers, count(p.name) no_pokemon from
+    trainers as t left join pokemon as p on t.id = p.trainer_id group by trainers;
+
+    +----------------+------------+
+    | trainers       | no_pokemon |
+    +----------------+------------+
+    | Ash Ketchup    |          2 |
+    | Brock Therock  |          1 |
+    | Gary Mustard   |          2 |
+    | Jessie Magenta |          2 |
+    | Misty Stone    |          3 |
+    +----------------+------------+
+
 
 ```
-Explanation:
+Explanation: group by is like group_concat(distinct), whatever values that are connected to a
+specific column will be grouped together in one virtual column. In this example, I grouped all
+the pokemon that belong to a specific trainer so that you will know how many pokemon on trainer
+possesses 
 
 [go back to table of contents][home]
 
 ### HAVING
+- having is the equivalent to the where command, but this command is only necessary if you
+are doing group by
 ```sql
+    select concat(t.first_name, " ", t.last_name) as trainers, count(p.name) no_pokemon from
+    trainers as t left join pokemon as p on t.id = p.trainer_id  
+    group by trainers  having no_pokemon >2;
+
+    +-------------+------------+
+    | trainers    | no_pokemon |
+    +-------------+------------+
+    | Misty Stone |          3 |
+    +-------------+------------+
+
 
 ```
-Explanation:
+Explanation: this is similar to the group by example, except it only retrieves no_pokemon column
+that has more than 2 pokemon
 
 [go back to table of contents][home]
 
 ### LEAST()
+- I am going to assume that this function is similar to the greatest function. 
+Essentially, you several columns that have number values, and the function will look
+lowest value and insert it into the virtual column
 ```sql
 
+    select name , attack, speed, defense, least(attack, speed, defense) as weakest from pokemon;
+
+    +------------+--------+-------+---------+---------+
+    | name       | attack | speed | defense | weakest |
+    +------------+--------+-------+---------+---------+
+    | ghastly    |     35 |    80 |      30 |      30 |
+    | bulbasaur  |     65 |    27 |      85 |      27 |
+    | weedle     |     87 |    50 |      35 |      35 |
+    | abra       |     45 |    60 |      90 |      45 |
+    | charmander |    130 |    46 |      56 |      46 |
+    | psyduck    |     75 |    33 |      66 |      33 |
+    | ekans      |     60 |    55 |      44 |      44 |
+    | geodude    |     80 |    20 |     100 |      20 |
+    | staryu     |     45 |    85 |      55 |      45 |
+    | dragonair  |     84 |    70 |      65 |      65 |
+    +------------+--------+-------+---------+---------+
+
 ```
-Explanation:
+Explanation: finds the weakest attribute of the pokemon and displays it
 
 [go back to table of contents][home]
 
@@ -626,10 +707,18 @@ Explanation: This selects from tablename that will receive rows from the startNu
 [go back to table of contents][home]
 
 ### MAX()
+- finds the highest number from a variety of values and displays it.
 ```sql
+    select max(defense) as highest_defense_of_all_pokemon from pokemon;
+
+    +--------------------------------+
+    | highest_defense_of_all_pokemon |
+    +--------------------------------+
+    |                            100 |
+    +--------------------------------+
 
 ```
-Explanation:
+Explanation: I got the highest defense from all the pokemon
 
 [go back to table of contents][home]
 
