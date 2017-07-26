@@ -30,9 +30,9 @@ I have a terrible memory so this is a cheat sheet
 - [INDEX][index]
 - [INSERT][insert]
 - [MAX()][max]
-- MD5()
+- [MD5()][md5]
 - [NOT BETWEEN][not-between]
-- NOW()
+- [NOW()][now]
 - [LEAST()][least]
 - [LIKE][like]
 - [LIMIT][limit]
@@ -43,11 +43,7 @@ I have a terrible memory so this is a cheat sheet
 - [SELECT][select]
 - [SET][set]
 - SHA1()
-- SHOW COLUMNNS from
-- SHOW DATABASES
-- SHOW TABLES
-- [SHOW TABLE STATUS][sts]
-- SHOW WARNINGS
+- [SHOW][show]
 - [SUM()][sum]
 - TRUNCATE
 - [UNIX_TIMESTAMP][unix]
@@ -88,12 +84,14 @@ I have a terrible memory so this is a cheat sheet
 [like]:#like
 [limit]:#limit
 [max]:#max
+[md5]:#md5
+[now]:#now
 [not-between]:#not-between
 [order]:#order-by
 [renam]:#rename-to
 [select]:#select
 [set]:#set
-[sts]:#show-table-status
+[show]:#show
 [sum]:#sum
 [unix]:#unix-timestamp
 [where]:#where
@@ -549,7 +547,7 @@ index(trainer_id)
 )
 ```
 
-### INSERT 
+### INSERT
 - Adds rows/data into table
 ```sql
 insert into pokemon (name, type, hp, attack, defense, trainer_id) values ("psyduck", "water", 90, 75, 66, 3);
@@ -578,7 +576,7 @@ Explanation:
 +------------+--------+---------+-------+------+
 
 ```
-Explanation: Chooses the greatest number based on the columns you add in the parameter 
+Explanation: Chooses the greatest number based on the columns you add in the parameter
 
 [go back to table of contents][home]
 
@@ -588,8 +586,8 @@ and orders them in that manner. So lets say there is a customer named "bob"
  and he made multiple purchases to a store name "macy's". If I wanted to show
  the multiple purchases that were made by bob, I would group it by bob
 ```sql
-    
-    
+
+
     +----+------------+---------+-----+--------+---------+-------+------------+
     | id | name       | type    | hp  | attack | defense | speed | trainer_id |
     +----+------------+---------+-----+--------+---------+-------+------------+
@@ -634,7 +632,7 @@ and orders them in that manner. So lets say there is a customer named "bob"
 Explanation: group by is like group_concat(distinct), whatever values that are connected to a
 specific column will be grouped together in one virtual column. In this example, I grouped all
 the pokemon that belong to a specific trainer so that you will know how many pokemon on trainer
-possesses 
+possesses
 
 [go back to table of contents][home]
 
@@ -660,7 +658,7 @@ that has more than 2 pokemon
 [go back to table of contents][home]
 
 ### LEAST()
-- I am going to assume that this function is similar to the greatest function. 
+- I am going to assume that this function is similar to the greatest function.
 Essentially, you several columns that have number values, and the function will look
 lowest value and insert it into the virtual column
 ```sql
@@ -694,7 +692,7 @@ with a capital B. And returns all the rows that have that
 ```sql
 select * from trainer where  name like "A%"
 ```
-Explanation:
+Explanation: retrieves the rows that have an "A" in them
 
 [go back to table of contents][home]
 
@@ -703,6 +701,11 @@ Explanation:
 - You can have a start and end number or you can one number that will output then number of documents
 ```sql
 select * from tablename limit startNumber, endNumber
+```
+
+
+```sql
+    select * from pokemon limit 5, 10;
 ```
 Explanation: This selects from tablename that will receive rows from the startNumber to the endNumber
 
@@ -725,10 +728,18 @@ Explanation: I got the highest defense from all the pokemon
 [go back to table of contents][home]
 
 ### MD5()
+- The value returns a binary string of 32 hex digits
 ```sql
+    select md5("hello new world");
+
+    +----------------------------------+
+    | md5("hello new world")           |
+    +----------------------------------+
+    | 6dc422ea4e83e014c4456706c72730f6 |
+    +----------------------------------+
 
 ```
-Explanation:
+Explanation: Turns a string into an encrypted string of numbers and words
 
 [go back to table of contents][home]
 
@@ -747,9 +758,16 @@ Explanation:
 ### NOW()
 - Gives you the current time in datetime format. Example: (2017-5-29 09:16:12)
 ```sql
-insert into
+    select now();
+
+    +---------------------+
+    | now()               |
+    +---------------------+
+    | 2017-07-26 22:59:01 |
+    +---------------------+
+
 ```
-Explanation:
+Explanation: Gives you the current date and time
 
 [go back to table of contents][home]
 
@@ -770,10 +788,37 @@ Explanation: orders the rows from ACS = alphabetic or numeric order, or DESC the
 
 
 ### RAND()
+- generates a random number between 0 - 1
 ```sql
+    select rand();
+    +--------------------+
+    | rand()             |
+    +--------------------+
+    | 0.3061164843906802 |
+    +--------------------+
 
 ```
-Explanation:
+```sql
+    select id, name, type, trainer_id from pokemon order by rand();
+
+    +----+------------+---------+------------+
+    | id | name       | type    | trainer_id |
+    +----+------------+---------+------------+
+    |  7 | ekans      | poison  |          4 |
+    |  6 | psyduck    | water   |          3 |
+    |  8 | geodude    | rock    |          5 |
+    | 10 | dragonair  | dragon  |          2 |
+    |  3 | weedle     | bug     |          3 |
+    |  4 | abra       | psychic |          4 |
+    |  9 | staryu     | water   |          3 |
+    |  2 | bulbasaur  | grass   |          2 |
+    |  1 | ghastly    | ghost   |          1 |
+    |  5 | charmander | fire    |          1 |
+    +----+------------+---------+------------+
+
+```
+Explanation: In this example, if you use order by you can generate rows in random
+order .
 
 [go back to table of contents][home]
 
@@ -786,10 +831,30 @@ Explanation:
 [go back to table of contents][home]
 
 ### REPLACE INTO
+- replace into is similar to insert into, except if you are inserting new data and there is a primary key
+that already exists  then the old row will be replaced by the new data
+row.
 ```sql
+     replace into pokemon values(7, "koffing","poison",35,60,44,55,4);
+
+    +----+------------+---------+-----+--------+---------+-------+------------+
+    | id | name       | type    | hp  | attack | defense | speed | trainer_id |
+    +----+------------+---------+-----+--------+---------+-------+------------+
+    |  1 | ghastly    | ghost   |  30 |     35 |      30 |    80 |          1 |
+    |  2 | bulbasaur  | grass   | 110 |     65 |      85 |    27 |          2 |
+    |  3 | weedle     | bug     |  75 |     87 |      35 |    50 |          3 |
+    |  4 | abra       | psychic |  85 |     45 |      90 |    60 |          4 |
+    |  5 | charmander | fire    | 100 |    130 |      56 |    46 |          1 |
+    |  6 | psyduck    | water   |  90 |     75 |      66 |    33 |          3 |
+    |  7 | koffing    | poison  |  35 |     60 |      44 |    55 |          4 |
+    |  8 | geodude    | rock    |  40 |     80 |     100 |    20 |          5 |
+    |  9 | staryu     | water   |  30 |     45 |      55 |    85 |          3 |
+    | 10 | dragonair  | dragon  |  61 |     84 |      65 |    70 |          2 |
+    +----+------------+---------+-----+--------+---------+-------+------------+
 
 ```
-Explanation:
+Explanation: I replaced the old name of the row that had the id of 7, from ekans to
+koffing. replace into replaces values of an existing primary key or adds a new one.
 
 [go back to table of contents][home]
 
@@ -825,6 +890,8 @@ Explanation:
 
 [go back to table of contents][home]
 
+### SHOW
+
 ### SHOW DATABASES
 ```sql
 
@@ -833,7 +900,7 @@ Explanation:
 
 [go back to table of contents][home]
 
-### SHOW TABLES
+#### SHOW TABLES
 ```sql
 
 ```
@@ -841,7 +908,7 @@ Explanation:
 
 [go back to table of contents][home]
 
-### SHOW COLUMNS from
+#### SHOW COLUMNS from
 ```sql
 
 ```
@@ -849,7 +916,7 @@ Explanation:
 
 [go back to table of contents][home]
 
-### SHOW TABLE STATUS
+#### SHOW TABLE STATUS
 ```sql
 
 ```
@@ -857,7 +924,7 @@ Explanation:
 
 [go back to table of contents][home]
 
-### SHOW WARNINGS
+#### SHOW WARNINGS
 - well ... it shows warning messages
 ```sql
 ```
