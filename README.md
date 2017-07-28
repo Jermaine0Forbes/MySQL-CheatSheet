@@ -37,9 +37,9 @@ I have a terrible memory so this is a cheat sheet
 - [LIKE][like]
 - [LIMIT][limit]
 - [ORDER BY][order]
-- RAND()
+- [RAND()][rand]
 - [RENAME TO][renam]
-- REPLACE INTO
+- [REPLACE INTO][replace]
 - [SELECT][select]
 - [SET][set]
 - SHA1()
@@ -88,7 +88,9 @@ I have a terrible memory so this is a cheat sheet
 [now]:#now
 [not-between]:#not-between
 [order]:#order-by
+[rand]:#rand
 [renam]:#rename-to
+[replace]:#replace-into
 [select]:#select
 [set]:#set
 [show]:#show
@@ -822,11 +824,12 @@ order .
 
 [go back to table of contents][home]
 
-### RENAME TO()
+### RENAME TO
+- as far as I know, "rename to" only renames tables
 ```sql
-
+    rename table pokemon to pocket_monsters
 ```
-Explanation:
+Explanation: I simply renamed the tables;
 
 [go back to table of contents][home]
 
@@ -859,10 +862,17 @@ koffing. replace into replaces values of an existing primary key or adds a new o
 [go back to table of contents][home]
 
 ### SHA1()
+- similar to md5, it creates an encrpyted string based on the string you provided
 ```sql
+    select sha1("test");
+    +------------------------------------------+
+    | sha1("test")                             |
+    +------------------------------------------+
+    | a94a8fe5ccb19ba61c4c0873d391e987982fbbd3 |
+    +------------------------------------------+
 
 ```
-Explanation:
+Explanation: this shit is totally useless, so don't worry about it.
 
 [go back to table of contents][home]
 
