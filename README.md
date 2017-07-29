@@ -42,7 +42,7 @@ I have a terrible memory so this is a cheat sheet
 - [REPLACE INTO][replace]
 - [SELECT][select]
 - [SET][set]
-- SHA1()
+- [SHA1()][sha]
 - [SHOW][show]
 - [SUM()][sum]
 - TRUNCATE
@@ -93,6 +93,7 @@ I have a terrible memory so this is a cheat sheet
 [replace]:#replace-into
 [select]:#select
 [set]:#set
+[sha]:#sha1
 [show]:#show
 [sum]:#sum
 [unix]:#unix-timestamp
@@ -891,12 +892,40 @@ Explanation: displays all the columns for the table name
 [go back to table of contents][home]
 
 ### SET
-- Similar to enum but you can have multiple values into one row
+- Similar to enum but you can have multiple values into one row, and the multiple
+values are ordered based on the values before it.
 
 ```sql
+    create table colors(
+    id serial,
+    color set('red','blue','yellow','green')
+    );
+
+    insert into colors (color) values (1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12);
+
+    select * from colors;
+
+    +----+-----------------+
+    | id | color           |
+    +----+-----------------+
+    |  1 | red             |
+    |  2 | blue            |
+    |  3 | red,blue        |
+    |  4 | yellow          |
+    |  5 | red,yellow      |
+    |  6 | blue,yellow     |
+    |  7 | red,blue,yellow |
+    |  8 | green           |
+    |  9 | red,green       |
+    | 10 | blue,green      |
+    | 11 | red,blue,green  |
+    | 12 | yellow,green    |
+    +----+-----------------+
+
 
 ```
-Explanation:
+Explanation: As you see here the set data type allows you have multiple values stored into 
+one list number. And to be honest it is very confusing so don't worry about it. Avoid this stupid shit at all costs
 
 [go back to table of contents][home]
 
@@ -904,47 +933,53 @@ Explanation:
 
 ### SHOW DATABASES
 ```sql
-
+    show databases;
 ```
-Explanation:
+Explanation: simple
 
 [go back to table of contents][home]
 
 #### SHOW TABLES
 ```sql
-
+    show tables;
 ```
-Explanation:
+Explanation: shows the tables in the database that you are in
 
 [go back to table of contents][home]
 
 #### SHOW COLUMNS from
 ```sql
-
+  show columns from journal
 ```
-Explanation:
+Explanation: This is pretty much "explain journal"
 
 [go back to table of contents][home]
 
 #### SHOW TABLE STATUS
 ```sql
-
+    show table status
 ```
-Explanation:
+Explanation: show all the tables specs like the engine being used, and some other shit.
+I don't know if I will need use of this anytime soon
 
 [go back to table of contents][home]
 
 #### SHOW WARNINGS
 - well ... it shows warning messages
 ```sql
+    show warnings
 ```
+Explanation: if there were any warnings when doing sql executions you will be able to see
+them with this command
+
+[go back to table of contents][home]
 
 ### SUM()
 - You should know what this function does
 ```sql
 select sum(attack) as all_pokemon_attack_power from pokemon;
 ```
-Explanation:
+Explanation: adds up all the attack power numbers from the pokemon
 
 [go back to table of contents][home]
 
