@@ -349,7 +349,7 @@ Explanation:
 
 [go back to table of contents][home]
 
-### DELETE from tablename
+### DELETE 
 - deletes a row from a table
 
 ```sql
@@ -985,10 +985,31 @@ Explanation: adds up all the attack power numbers from the pokemon
 
 
 ### TRUNCATE
+- if this is talking about the number function, then it allows you to shorten the decimal
+places. truncate(number, decimal places)
 ```sql
 
+    +----+----------+
+    | id | number   |
+    +----+----------+
+    |  1 |  5.43200 |
+    |  2 |  8.23520 |
+    |  3 | 12.12980 |
+    +----+----------+
+
+    select id, truncate(number,2) as num from decimals;
+
+    +----+-------+
+    | id | num   |
+    +----+-------+
+    |  1 |  5.43 |
+    |  2 |  8.23 |
+    |  3 | 12.12 |
+    +----+-------+
+
 ```
-Explanation:
+Explanation: With the truncate function it cuts off the remaining decimals places and does not
+round them up
 
 [go back to table of contents][home]
 
