@@ -45,9 +45,9 @@ I have a terrible memory so this is a cheat sheet
 - [SHA1()][sha]
 - [SHOW][show]
 - [SUM()][sum]
-- TRUNCATE
+- [TRUNCATE][trunc]
 - [UNIX_TIMESTAMP][unix]
-- UPDATE tablename SET column = value
+- [UPDATE][update]
 - [WHERE][where]
 
 [add]:#add
@@ -96,7 +96,9 @@ I have a terrible memory so this is a cheat sheet
 [sha]:#sha1
 [show]:#show
 [sum]:#sum
+[trunc]:#truncate
 [unix]:#unix-timestamp
+[update]:#update
 [where]:#where
 
 #### Table: pokemon
@@ -349,7 +351,7 @@ Explanation:
 
 [go back to table of contents][home]
 
-### DELETE 
+### DELETE
 - deletes a row from a table
 
 ```sql
@@ -924,7 +926,7 @@ values are ordered based on the values before it.
 
 
 ```
-Explanation: As you see here the set data type allows you have multiple values stored into 
+Explanation: As you see here the set data type allows you have multiple values stored into
 one list number. And to be honest it is very confusing so don't worry about it. Avoid this stupid shit at all costs
 
 [go back to table of contents][home]
@@ -1014,10 +1016,20 @@ round them up
 [go back to table of contents][home]
 
 ### UNIX_TIMESTAMP
+- will return the unix timestamp in seconds as an unsigned integer since '1970-01-01 00:00:00' UTC
 ```sql
 
+    select unix_timestamp();
+
+    +------------------+
+    | unix_timestamp() |
+    +------------------+
+    |       1501778012 |
+    +------------------+
+
+
 ```
-Explanation:
+Explanation: Gives you the amount of seconds that has passed since 1970
 
 [go back to table of contents][home]
 
@@ -1026,9 +1038,14 @@ Explanation:
 ```sql
 update pokemon set name = "magmar" where id = 5;
 ```
+Explanation: changes the name to the pokemon that has the id of 5
+
+[go back to table of contents][home]
+
 
 ### WHERE
 - Specifies what particular column will be effected
 ```sql
 select hp , attack , defense from pokemon where name = "abra";
 ```
+[go back to table of contents][home]
