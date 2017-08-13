@@ -210,6 +210,26 @@ Explanation: Averages the number of a column
 Explanation: shows three columns (name, age, boolean), and boolean will return 1 if age > 20
 , or it will be 0 if the age is lesser than 20
 
+
+```sql
+
+     select name, hp, 
+     (case when hp >= 100 then "high hp" when hp <= 50 then "low hp" else hp end) as rate_hp from pokemon limit 5;
+
+    +------------+-----+---------+
+    | name       | hp  | rate_hp |
+    +------------+-----+---------+
+    | ghastly    |  30 | low hp  |
+    | bulbasaur  | 110 | high hp |
+    | weedle     |  75 | 75      |
+    | abra       |  85 | 85      |
+    | charmander | 100 | high hp |
+    +------------+-----+---------+
+
+```
+Explanation: when the hp is 100 or higher the rate_hp column will say "high hp"
+
+
 [go back to table of contents][home]
 
 
