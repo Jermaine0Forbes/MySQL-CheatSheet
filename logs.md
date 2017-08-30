@@ -1,5 +1,42 @@
 # logs
 
+## 8/20/17
+
+### tasks
+- I am going to try to create a delete trigger even though I don't feel like it
+
+### how to delete a trigger
+
+```mysql
+	
+	DROP TRIGGER IF EXISTS `delete_this_shit`;CREATE DEFINER=`jermaine`@`localhost` TRIGGER `delete_this_shit` AFTER DELETE ON `list` FOR EACH ROW BEGIN delete from regular where id = old.id OR name = old.name; END 
+```
+
+### something to note
+- Apparently, you need to add a delimeter when you create  a trigger I have never been
+able to do it successfully with triggers
+
+### here is the update trigger I created, a yesterday
+```
+	delimeter $
+	create trigger trigger_exchange
+		after insert on orders
+		 for each row
+		 	begin
+		 		update customers 
+				set account = account - new.amount 
+				where cust_id = new.cust_id;
+			end $
+
+
+
+```
+## 8/19/17
+
+### tasks
+- I am going to try to create a trigger inserts data into a table and deletes
+the data when the other data is deleted
+- I am going to try to create an update trigger
 
 ## 8/13/17
 
