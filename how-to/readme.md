@@ -3,10 +3,27 @@
 
 - [how to create a user and grant privileges][create-user]
 - [how to dump a mysql database][dump]
+- [how to change permissions and privileges for a user][permission]
+- [how to create a trigger][trigger]
 
 [create-user]:#how-to-create-a-user-and-grant-privileges
+[trigger]:#how-to-create-a-trigger
 [home]:#mysql-how-to
 [dump]:#how-to-dump-a-mysql-database
+[user]:#how-to-create-a-user
+[permission]:#how-to-change-permissions-and-privileges-for-a-user
+
+### HOW TO CREATE A TRIGGER
+
+
+
+### HOW TO CHANGE PERMISSIONS AND PRIVILEGES FOR A USER
+
+```
+
+```
+[go back to home][home]
+
 
 ### HOW TO CREATE A USER AND GRANT PRIVILEGES
 0. [How to Create a New User](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql)
