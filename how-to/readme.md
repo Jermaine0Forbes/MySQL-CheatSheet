@@ -5,7 +5,9 @@
 - [how to dump a mysql database][dump]
 - [how to change permissions and privileges for a user][permission]
 - [how to create a trigger][trigger]
+- [how to change the database engine][engine]
 
+[engine]:#how-to-change-the-database-engine
 [create-user]:#how-to-create-a-user-and-grant-privileges
 [trigger]:#how-to-create-a-trigger
 [home]:#mysql-how-to
@@ -13,9 +15,25 @@
 [user]:#how-to-create-a-user
 [permission]:#how-to-change-permissions-and-privileges-for-a-user
 
+### HOW TO CHANGE THE DATABASE ENGINE
+**reference**
+- [How to change the database engine](https://www.siteground.com/kb/how_to_change_the_database_engine_of_a_mysql_database_table/)
+
+```sql
+alter table my_table engine = MyISAM
+
+OR
+
+alter table my_table engine = InnoDB
+```
+[go back to home][home]
+
 ### HOW TO CREATE A TRIGGER
 
+```
 
+```
+[go back to home][home]
 
 ### HOW TO CHANGE PERMISSIONS AND PRIVILEGES FOR A USER
 

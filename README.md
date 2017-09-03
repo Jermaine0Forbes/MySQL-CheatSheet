@@ -182,6 +182,11 @@ alter table trainers  drop age , drop sex ;
 ```
 Explanation: drops the columns age and sex from trainers
 
+```sql
+alter table trainers engine=MyISAM;
+```
+Explanation: changed the table engine to MyISAM
+
 [go back to table of contents][home]
 
 ###  AS
