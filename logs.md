@@ -1,5 +1,13 @@
 # logs
 
+## 9/20/17
+
+### tasks
+- attempt to do  transactions
+- might create tutorial for joining
+
+
+
 ## 9/18/17
 
 ### tasks
