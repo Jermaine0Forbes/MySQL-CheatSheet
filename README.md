@@ -1038,6 +1038,16 @@ places. truncate(number, decimal places)
 Explanation: With the truncate function it cuts off the remaining decimals places and does not
 round them up
 
+#### TRUNCATING TABLES 
+
+if you want to empty the rows of a table you will use the truncate command like this
+
+```sql 
+truncate trainers;
+
+// this will empty the trainers table
+```
+
 [go back to table of contents][home]
 
 ### UNIX_TIMESTAMP
