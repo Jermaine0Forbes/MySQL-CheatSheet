@@ -28,5 +28,10 @@
 
 
 ## What is a JOIN
+**reference**
+- [w3resource](https://www.w3resource.com/mysql/advance-query-in-mysql/mysql-joins.php)
+- [mysql](https://dev.mysql.com/doc/refman/5.7/en/join.html)
+- [w3schools](https://www.w3schools.com/sql/sql_join.asp)
+
  A join is a command where you can combine two or more tables that will create a
  new table based on the specified columns that you are querying.
