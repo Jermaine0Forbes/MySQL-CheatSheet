@@ -7,7 +7,9 @@
 - [how to change permissions and privileges for a user][permission]
 - [how to create a trigger][trigger]
 - [how to change the database engine][engine]
+- [how to import a database ][import]
 
+[import]:#how-to-import-a-database
 [change-data]:#how-to-change-data-before-inserting
 [engine]:#how-to-change-the-database-engine
 [create-user]:#how-to-create-a-user-and-grant-privileges
@@ -17,12 +19,39 @@
 [user]:#how-to-create-a-user
 [permission]:#how-to-change-permissions-and-privileges-for-a-user
 
+### HOW TO IMPORT A DATABASE
+
+**reference**
+- [How to import an SQL file using the command line in MySQL?](https://stackoverflow.com/questions/17666249/how-to-import-an-sql-file-using-the-command-line-in-mysql?rq=1)
+
+1. create the database that you are trying to import
+
+```
+mysql -u jermaine -p
+
+//inside mysql
+
+create database portfolio;
+
+exit;
+
+```
+
+2. now import the database into the newly created database
+
+```
+mysql -u jermaine -p <database name> < <insert path name>
+```
+
+
+[go back to home][home]
+
 ### HOW TO CHANGE DATA BEFORE INSERTING
 **reference**
 - [MySQL automatic conversion on lowercase](https://stackoverflow.com/questions/12795021/mysql-automatic-conversion-on-lowercase)
 
 ```sql
-// Let's say that you want to make sure that every name that is 
+// Let's say that you want to make sure that every name that is
 // inserted becomes uppercase
 
 // first create the table
@@ -62,7 +91,7 @@ alter table my_table engine = InnoDB
 [go back to home][home]
 
 ### HOW TO CREATE A TRIGGER
-There are so many different ways to create a trigger. Essentially, 
+There are so many different ways to create a trigger. Essentially,
 the trigger will execute an action that you have set when you created
 whether information is inserted, updated, or deleted is dependent upon
 your created trigger. I will show a couple of examples of triggers. And
@@ -82,8 +111,8 @@ delimeter $
 		after insert on orders
 		 for each row
 		 	begin
-		 		update customers 
-				set account = account - new.amount 
+		 		update customers
+				set account = account - new.amount
 				where cust_id = new.cust_id;
 			end $
 
@@ -102,21 +131,21 @@ insert into customers (name,amount) values ('burger', 10.28);
 **reference**
 - [How to Create a New User](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql)
 
-#### TYPES OF PERMISSIONS 
+#### TYPES OF PERMISSIONS
 
 - **all privleges**: as we saw previously, this would allow a MySQL user all access to a designated database (or if no database is selected, across the system)
 - **create**: allows them to create new tables or databases
-- **delete**: allows them to delete rows from tables 
+- **delete**: allows them to delete rows from tables
 - **update**: allow them to update table rows
 - **insert**: allows them to insert rows into tables
 - **drop**: allows them to them to delete tables or databases
-- **select**: allows them to use the Select command to read through databases 
+- **select**: allows them to use the Select command to read through databases
 - **grant option**: allows them to grant or remove other users' privileges
 
 ```sql
 // the formula to grant permissions
 
-GRANT [type of permission] ON [database name].[table name] TO ‘[username]’@'localhost’;
+GRANT [type of permission] ON [database name].[table name] TO ‘[username]’@localhost;
 ```
 
 ```sql
@@ -159,5 +188,15 @@ Explanation: this will dump all the databases to a specified location
 ```
 Explanation: instead of putting into an sql, it will gzip it. I think that means
 that will compress the file
+
+```
+mysqldump -u <username> -p <database name> > <location>
+```
+Explanation: this dumps one database to a path
+
+```
+mysqldump -u <username> -p  --databases <database name>...<other database names > <location>
+```
+Explanation: this dumps multiple databases to a path
 
 [go back to home][home]
