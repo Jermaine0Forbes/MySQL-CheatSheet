@@ -218,7 +218,7 @@ Explanation: shows three columns (name, age, boolean), and boolean will return 1
 
 ```sql
 
-     select name, hp, 
+     select name, hp,
      (case when hp >= 100 then "high hp" when hp <= 50 then "low hp" else hp end) as rate_hp from pokemon limit 5;
 
     +------------+-----+---------+
@@ -1037,6 +1037,14 @@ places. truncate(number, decimal places)
 ```
 Explanation: With the truncate function it cuts off the remaining decimals places and does not
 round them up
+
+#### Truncating tables
+the truncate keyword can also empty a table like so
+
+```sql
+ truncate table pokemon;
+```
+Explanation: empties the data from the table
 
 [go back to table of contents][home]
 
