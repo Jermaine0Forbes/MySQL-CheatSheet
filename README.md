@@ -172,6 +172,12 @@ alter table pokemon  add speed int(3) default "18";
 Explanation: adds a new column called age that can hold a maximum of three digits
 and the default value will be 18
 
+#### Add multiple columns 
+
+```sql
+alter table pokemon add specialAtk int(3), add specialDef int(3);
+```
+
 [go back to table of contents][home]
 
 
@@ -428,7 +434,7 @@ Explanation: simple
 
 - self explanatory
 ```sql
- alter table trainers drop column sex
+ alter table trainers drop column sex, drop column name;
 ```
 Explanation: removes column sex from the trainers table;
 
