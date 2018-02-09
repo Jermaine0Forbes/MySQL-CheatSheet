@@ -1,6 +1,7 @@
 
 # MYSQL HOW TO
 
+- [how to show all the privileges of a user][privilege-user]
 - [how to change data before inserting][change-data]
 - [how to create a user and grant privileges][create-user]
 - [how to dump a mysql database][dump]
@@ -9,6 +10,7 @@
 - [how to change the database engine][engine]
 - [how to import a database ][import]
 
+[privilege-user]:#how-to-show-all-the-privileges-of-a-user
 [import]:#how-to-import-a-database
 [change-data]:#how-to-change-data-before-inserting
 [engine]:#how-to-change-the-database-engine
@@ -18,6 +20,18 @@
 [dump]:#how-to-dump-a-mysql-database
 [user]:#how-to-create-a-user
 [permission]:#how-to-change-permissions-and-privileges-for-a-user
+
+
+### HOW TO SHOW ALL THE PRIVILEGES OF A USER
+
+**references**
+- [SHOW GRANTS Syntax](https://dev.mysql.com/doc/refman/5.7/en/show-grants.html)
+
+```
+SHOW GRANTS FOR 'jeffrey'@'localhost';
+```
+
+[go back :home][home]
 
 ### HOW TO IMPORT A DATABASE
 
