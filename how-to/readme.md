@@ -1,14 +1,32 @@
 
 # MYSQL HOW TO
 
-- [how to show all the privileges of a user][privilege-user]
-- [how to change data before inserting][change-data]
-- [how to create a user and grant privileges][create-user]
-- [how to dump a mysql database][dump]
-- [how to change permissions and privileges for a user][permission]
-- [how to create a trigger][trigger]
+## Database
 - [how to change the database engine][engine]
+
+## Errors
+
+## Privileges
+:link: [how to show all the privileges of a user][privilege-user]
+
+
+## Settings
+
+## Tables
+
+## Triggers
+- [how to change data before inserting][change-data]
+- [how to create a trigger][trigger]
+
+## Importing/Dumping
 - [how to import a database ][import]
+- [how to dump a mysql database][dump]
+
+## Users
+
+- [how to create a user and grant privileges][create-user]
+- [how to change permissions and privileges for a user][permission]
+
 
 [privilege-user]:#how-to-show-all-the-privileges-of-a-user
 [import]:#how-to-import-a-database
@@ -21,6 +39,7 @@
 [user]:#how-to-create-a-user
 [permission]:#how-to-change-permissions-and-privileges-for-a-user
 
+---
 
 ### HOW TO SHOW ALL THE PRIVILEGES OF A USER
 
@@ -31,7 +50,7 @@
 SHOW GRANTS FOR 'jeffrey'@'localhost';
 ```
 
-[go back :home][home]
+[go back :house:][home]
 
 ### HOW TO IMPORT A DATABASE
 
@@ -58,7 +77,7 @@ mysql -u jermaine -p <database name> < <insert path name>
 ```
 
 
-[go back to home][home]
+[go back :house:][home]
 
 ### HOW TO CHANGE DATA BEFORE INSERTING
 **reference**
