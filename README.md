@@ -172,6 +172,12 @@ alter table pokemon  add speed int(3) default "18";
 Explanation: adds a new column called age that can hold a maximum of three digits
 and the default value will be 18
 
+#### Add multiple columns 
+
+```sql
+alter table pokemon add specialAtk int(3), add specialDef int(3);
+```
+
 [go back to table of contents][home]
 
 
@@ -428,7 +434,7 @@ Explanation: simple
 
 - self explanatory
 ```sql
- alter table trainers drop column sex
+ alter table trainers drop column sex, drop column name;
 ```
 Explanation: removes column sex from the trainers table;
 
@@ -1038,13 +1044,16 @@ places. truncate(number, decimal places)
 Explanation: With the truncate function it cuts off the remaining decimals places and does not
 round them up
 
-#### Truncating tables
-the truncate keyword can also empty a table like so
 
-```sql
- truncate table pokemon;
+#### TRUNCATING TABLES 
+
+if you want to empty the rows of a table you will use the truncate command like this
+
+```sql 
+truncate trainers;
+
+// this will empty the trainers table
 ```
-Explanation: empties the data from the table
 
 [go back to table of contents][home]
 
