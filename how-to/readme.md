@@ -11,6 +11,9 @@
 
 
 ## Settings
+- [how to determine if timezone data is loaded into your mysql][timezone-check]
+- [how to change the timezone in mysql ][change-timezone]
+- [how to restart mysql][restart-mysql]
 
 ## Tables
 
@@ -27,7 +30,9 @@
 - [how to create a user and grant privileges][create-user]
 - [how to change permissions and privileges for a user][permission]
 
-
+[restart-mysql]:#how-to-restart-mysql
+[change-timezone]:#how-to-change-the-timezone-in-mysql
+[timezone-check]:#how-to-determine-if-timezone-data-is-loaded-into-your-mysql
 [privilege-user]:#how-to-show-all-the-privileges-of-a-user
 [import]:#how-to-import-a-database
 [change-data]:#how-to-change-data-before-inserting
@@ -40,6 +45,59 @@
 [permission]:#how-to-change-permissions-and-privileges-for-a-user
 
 ---
+
+### HOW TO RESTART MYSQL
+
+<details>
+<summary>View</summary>
+    
+**reference**
+:link: [coolest guides](https://coolestguidesontheplanet.com/start-stop-mysql-from-the-command-line-terminal-osx-linux/)
+
+````
+ /etc/init.d/mysql restart
+````
+
+</details>
+
+[go back :house:][home]
+
+### HOW TO CHANGE THE TIMEZONE IN MYSQL
+
+<details>
+<summary>View</summary>
+    
+1. check the current time 
+
+````
+select now();
+````
+
+2. now add this command and value `+8:00` based on how much hours need to 
+be added or taken away 
+
+```
+SET GLOBAL time_zone = '+8:00';
+```
+**Note:** this will only work when you are in mysql, after you leave the timezone 
+will reset back to the original timezone
+
+</details>
+
+[go back :house:][home]
+
+
+### HOW TO DETERMINE IF TIMEZONE DATA IS LOADED INTO YOUR MYSQL
+
+1. add this in your sql
+
+```
+SELECT CONVERT_TZ('2012-06-07 12:00:00', 'GMT', 'America/New_York');
+```
+
+2. if the result comes back null then you don't have it installed
+
+[go back :house:][home]
 
 ### HOW TO SHOW ALL THE PRIVILEGES OF A USER
 
