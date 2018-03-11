@@ -268,26 +268,49 @@ flush privileges;
 [go back to home][home]
 
 ### HOW TO DUMP A MYSQL DATABASE
-- the essential command is this
-```
-	mysqldump -u *username* -p --all-databases > *location*
+
+<details>
+<summary>
+View Content
+<summary>
+
+ the essential command is this
+ 
+```sql
+	mysqldump -u *username* -p --all-databases > /path/to/location.sql
 ```
 Explanation: this will dump all the databases to a specified location
 
-```
-	mysqldump -u *username* -p --alldatabase | gzip > *location.sql.gz*
-```
-Explanation: instead of putting into an sql, it will gzip it. I think that means
+
+#### HOW TO DUMP A DATABASE AND GZIP IT
+
+instead of putting into an sql, it will gzip it. I think that means
 that will compress the file
 
+```sql
+	mysqldump -u *username* -p --alldatabase | gzip > /path/to/location.sql.gz
 ```
-mysqldump -u <username> -p <database name> > <location>
-```
-Explanation: this dumps one database to a path
 
-```
-mysqldump -u <username> -p  --databases <database name>...<other database names > <location>
-```
-Explanation: this dumps multiple databases to a path
 
-[go back to home][home]
+#### HOW TO DUMP ONE DATABSE
+
+this dumps one database to a path
+
+```sql
+mysqldump -u <username> -p databaseName > /path/to/location.sql
+```
+
+
+#### HOW TO DUMP MULTIPLE DATABASES
+
+this dumps multiple databases to a path
+
+```sql
+mysqldump -u <username> -p  --databases *insert database name*...*insert other database names* /path/to/location.sql
+```
+
+</details>
+
+
+
+[go back to :house:][home]
