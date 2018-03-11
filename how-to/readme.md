@@ -272,7 +272,7 @@ flush privileges;
 <details>
 <summary>
 View Content
-<summary>
+</summary>
 
  the essential command is this
  
