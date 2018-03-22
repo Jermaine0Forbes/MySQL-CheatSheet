@@ -58,6 +58,7 @@ the column values from each other. In this example, I just used "--"
 <summary>
 View Content
 </summary>
+
 ```sql
  select concat(first_name, " ", last_name) as name from trainers;
 
@@ -84,9 +85,10 @@ the first name , the last name, and whitespace " ". Created the name field.
 <summary>
 View Content
 </summary>
+
 gets the time from datetime or timestamp expressions
 
-```
+```sql
 select id, first_name, time(trainer_registered) from trainers;
 
 +----+------------+--------------------------+
