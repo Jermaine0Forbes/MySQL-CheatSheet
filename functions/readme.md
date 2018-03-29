@@ -3,6 +3,9 @@
 ## String 
 - [concat()][concat]
 - [concat_ws()][concat-ws]
+- [substr][substr]
+- [length][length]
+- [format][format]
 
 
 
@@ -12,6 +15,9 @@
 - [current_timestamp][current-timestamp]
 - [time()][time]
 
+[format]:#format
+[length]:#length
+[substr]:#substr
 [concat-ws]:#concat_ws
 [concat]:#concat
 [time]:#time
@@ -22,6 +28,97 @@
 
 
 
+
+### format
+
+<details>
+<summary>
+View Content
+</summary>
+
+Formats the number with commas, decimals and **rounds the decimals up**
+
+`FORMAT(number, decimal_places)`
+
+
+```sql
+
+select format(12356.236,2);
+
++---------------------+
+| format(12356.236,2) |
++---------------------+
+| 12,356.24           |
++---------------------+
+
+```
+
+</details>
+
+[go back :house:][home]
+
+
+
+### length
+
+<details>
+<summary>
+View Content
+</summary>
+
+Return the string length of the given value
+
+`LENGTH(string)`
+
+
+
+```sql
+
+ select length("jermaine forbes");
+
+
+
++---------------------------+
+| length("jermaine forbes") |
++---------------------------+
+|                        15 |
++---------------------------+
+
+
+```
+
+</details>
+
+[go back :house:][home]
+
+
+### substr
+
+<details>
+<summary>
+View Content
+</summary>
+
+`SUBSTR(string, start, length)`
+
+
+
+```sql
+
+ select substr("jermaine forbes", 1,7)
+
+
++--------------------------------+
+| substr("jermaine forbes", 1,7) |
++--------------------------------+
+| jermain                        |
++--------------------------------+
+
+```
+
+</details>
+
+[go back :house:][home]
 
 ### concat_ws 
 
