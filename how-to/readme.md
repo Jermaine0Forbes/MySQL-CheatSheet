@@ -219,19 +219,26 @@ insert into customers (name,amount) values ('burger', 10.28);
 [go back to home][home]
 
 ### HOW TO CHANGE PERMISSIONS AND PRIVILEGES FOR A USER
+<details>
+<summary>
+View content
+</summary>
 **reference**
 - [How to Create a New User](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql)
 
 #### TYPES OF PERMISSIONS
 
-- **all privleges**: as we saw previously, this would allow a MySQL user all access to a designated database (or if no database is selected, across the system)
-- **create**: allows them to create new tables or databases
-- **delete**: allows them to delete rows from tables
-- **update**: allow them to update table rows
-- **insert**: allows them to insert rows into tables
-- **drop**: allows them to them to delete tables or databases
-- **select**: allows them to use the Select command to read through databases
-- **grant option**: allows them to grant or remove other users' privileges
+Permissinon|Description
+-|-
+**all privleges**|as we saw previously, this would allow a MySQL user all access to a designated database (or if no database is selected, across the system)
+**create**|allows them to create new tables or databases
+**delete**|allows them to delete rows from tables
+**update**|allow them to update table rows
+**insert**|allows  them to insert rows into tables
+**drop**|allows them to them to delete tables or databases
+**select**|allows them to use the Select command to read through databases
+**grant option**|allows them to grant or remove other users' privileges
+
 
 ```sql
 // the formula to grant permissions
@@ -244,7 +251,12 @@ GRANT [type of permission] ON [database name].[table name] TO ‘[username]’@l
 
 REVOKE [type of permission] ON [database name].[table name] FROM ‘[username]’@‘localhost’;
 ```
-[go back to home][home]
+
+
+</details>
+
+
+[go back to :house:][home]
 
 
 ### HOW TO CREATE A USER AND GRANT PRIVILEGES
