@@ -6,8 +6,12 @@
 
 ## Errors
 
+## Foreign Key
+
+- [how to create a foreign key][foreign-key]
+
 ## Privileges
-:link: [how to show all the privileges of a user][privilege-user]
+- [how to show all the privileges of a user][privilege-user]
 
 
 ## Settings
@@ -30,6 +34,16 @@
 - [how to create a user and grant privileges][create-user]
 - [how to change permissions and privileges for a user][permission]
 
+## Stuff I need to do eventually
+- how to set a variable 
+- how to do an after trigger
+- how to install timezones into sql
+- is sharding possible in mysql?
+- when to use unique keys
+-  how to do normalization properly
+- how to use mysql workbench 
+
+
 [restart-mysql]:#how-to-restart-mysql
 [change-timezone]:#how-to-change-the-timezone-in-mysql
 [timezone-check]:#how-to-determine-if-timezone-data-is-loaded-into-your-mysql
@@ -43,13 +57,137 @@
 [dump]:#how-to-dump-a-mysql-database
 [user]:#how-to-create-a-user
 [permission]:#how-to-change-permissions-and-privileges-for-a-user
-
+[foreign-key]:#how-to-create-a-foreign-key
 ---
+
+### HOW TO CREATE A FOREIGN KEY
+
+
+<details>
+<summary>View Content</summary>
+    
+**reference**
+- [mysqltutorial](http://www.mysqltutorial.org/mysql-foreign-key/)
+- [w3schools](https://www.w3schools.com/sql/sql_foreignkey.asp)
+
+#### If you are altering a table 
+
+1. create the first two  tables that will be referenced
+
+````sql
+
+create table customers(
+id serial,
+name varchar(45),
+sex tinyint(1) default 0
+)
+
+create table menu(
+id serial,
+name varchar(25),
+price decimal(4,2)
+)
+
+
+
+````
+
+2. Next create the table the that will hold the id's of the parent tables.
+**Remember** to create an index for the foreign key columns **and** make sure the datatypes are similar.
+For example, if a primary key has `bigint(20) unsigned` you have to make sure your foreign key has the same value
+
+```sql
+
+create table orders(
+id serial,
+cust_id bigint(20) unsigned,
+index(cust_id),
+menu_id bigint(20) unsigned,
+index(menu_id),
+created_at datetime default current_timestamp
+)
+
+
+```
+
+3. Now create the foreign keys by altering the table and adding them in 
+
+```sql
+
+alter table orders 
+add constraint fk_menu
+foreign key fk_menu(menu_id) references menu(id)
+on delete cascade
+on update cascade;
+
+
+alter table orders 
+add constraint fk_cust
+foreign key fk_cust(cust_id) references customers(id)
+on delete cascade
+on update cascade;
+
+```
+
+4. And that is pretty much it
+
+
+#### If you are creating a table 
+
+
+1. create the first two  tables that will be referenced
+
+````sql
+
+create table customers(
+id serial,
+name varchar(45),
+sex tinyint(1) default 0
+)
+
+create table menu(
+id serial,
+name varchar(25),
+price decimal(4,2)
+)
+
+
+
+````
+
+2. This time you will create orders while adding foreign keys to both tables
+
+```sql
+
+create table orders(
+id serial,
+cust_id bigint(20) unsigned,
+index(cust_id),
+menu_id bigint(20) unsigned,
+index(menu_id),
+constraint fk_cust
+foreign key fk_cust(cust_id) references customers(id)
+on update cascade
+on delete cascade,
+constraint fk_menu
+foreign key fk_menu(menu_id) references menu(id)
+on update cascade
+on delete cascade
+);
+
+
+```
+
+
+</details>
+
+[go back :house:][home]
+
 
 ### HOW TO RESTART MYSQL
 
 <details>
-<summary>View</summary>
+<summary>View Content</summary>
     
 **reference**
 :link: [coolest guides](https://coolestguidesontheplanet.com/start-stop-mysql-from-the-command-line-terminal-osx-linux/)
