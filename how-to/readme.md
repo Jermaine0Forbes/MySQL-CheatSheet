@@ -35,6 +35,7 @@
 - [how to change permissions and privileges for a user][permission]
 
 ## Stuff I need to do eventually
+
 - how to set a variable 
 - how to do an after trigger
 - how to install timezones into sql
@@ -58,6 +59,7 @@
 [user]:#how-to-create-a-user
 [permission]:#how-to-change-permissions-and-privileges-for-a-user
 [foreign-key]:#how-to-create-a-foreign-key
+
 ---
 
 ### HOW TO CREATE A FOREIGN KEY
