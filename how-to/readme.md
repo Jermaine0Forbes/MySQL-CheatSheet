@@ -440,7 +440,7 @@ instead of putting into an sql, it will gzip it. I think that means
 that will compress the file
 
 ```sql
-	mysqldump -u *username* -p --alldatabase | gzip > /path/to/location.sql.gz
+	mysqldump -u *username* -p --all-databases | gzip > /path/to/location.sql.gz
 ```
 
 
