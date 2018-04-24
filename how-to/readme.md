@@ -10,6 +10,10 @@
 
 - [how to create a foreign key][foreign-key]
 
+## Joins
+
+- [how to create a simple join][simple-join]
+
 ## Privileges
 - [how to show all the privileges of a user][privilege-user]
 
@@ -45,6 +49,7 @@
 - how to use mysql workbench 
 
 
+[simple-join]:#how-to-create-a-simple-join
 [restart-mysql]:#how-to-restart-mysql
 [change-timezone]:#how-to-change-the-timezone-in-mysql
 [timezone-check]:#how-to-determine-if-timezone-data-is-loaded-into-your-mysql
@@ -61,6 +66,78 @@
 [foreign-key]:#how-to-create-a-foreign-key
 
 ---
+
+### HOW TO CREATE A SIMPLE JOIN 
+
+<details>
+<summary>View Content</summary>
+
+**reference**
+- [w3schools](https://www.w3schools.com/sql/sql_join.asp)
+
+The join command connects tables together with the foreign key constraint
+
+
+#### Getting the Pokemon's name, id, and the trainers first and last name 
+
+```sql
+
+SELECT p.id AS id,  p.name  AS name, CONCAT(t.first_name, " ", t.last_name) AS trainer 
+FROM Pokemon.pokemon AS p 
+INNER JOIN Pokemon.trainers AS t ON p.trainer_id = t.id;
+
+
+
++----+------------+----------------+
+| id | name       | trainer        |
++----+------------+----------------+
+|  1 | ghastly    | Ash Ketchup    |
+|  2 | bulbasaur  | Gary Mustard   |
+|  3 | weedle     | Misty Stone    |
+|  4 | abra       | Jessie Magenta |
+|  5 | charmander | Ash Ketchup    |
+|  6 | psyduck    | Misty Stone    |
+|  7 | ekans      | Jessie Magenta |
+|  8 | geodude    | Brock Therock  |
+|  9 | staryu     | Misty Stone    |
+| 10 | dragonair  | Gary Mustard   |
++----+------------+----------------+
+
+
+```
+
+
+#### Getting the trainers id, full name, and the pokemon they have 
+
+
+```sql
+SELECT t.id as id, CONCAT(t.first_name, " " , t.last_name)  as name , group_concat(p.name) as pokemon 
+FROM Pokemon.trainers as t inner join Pokemon.pokemon as p 
+on t.id = trainer_id group by id;
+
+
++----+----------------+-----------------------+
+| id | name           | pokemon               |
++----+----------------+-----------------------+
+|  1 | Ash Ketchup    | ghastly,charmander    |
+|  2 | Gary Mustard   | bulbasaur,dragonair   |
+|  3 | Misty Stone    | staryu,psyduck,weedle |
+|  4 | Jessie Magenta | ekans,abra            |
+|  5 | Brock Therock  | geodude               |
++----+----------------+-----------------------+
+
+
+```
+
+
+
+
+</details>
+
+[go back :house:][home]
+
+
+
 
 ### HOW TO CREATE A FOREIGN KEY
 
