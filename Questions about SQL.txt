@@ -2,3 +2,21 @@ SQL QUESTIONS I HAVE
 
 How to make sql timestamp autoupdate when I change information?
 	http://stackoverflow.com/questions/18962757/when-is-a-timestamp-auto-updated
+
+	
+###
+
+<details>
+
+<summary>
+View Content
+</summary>
+
+```
+
+
+```
+
+</details>
+
+[go back :house:][home]

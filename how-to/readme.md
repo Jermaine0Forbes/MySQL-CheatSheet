@@ -13,6 +13,8 @@
 ## Joins
 
 - [how to create a simple join][simple-join]
+- [the "ON" keyword][on-join]
+- [the "USING" keyword][using-join]
 
 ## Privileges
 - [how to show all the privileges of a user][privilege-user]
@@ -48,7 +50,8 @@
 -  how to do normalization properly
 - how to use mysql workbench 
 
-
+[using-join]:#the-using-keyword
+[on-join]:#the-on-keyword
 [simple-join]:#how-to-create-a-simple-join
 [restart-mysql]:#how-to-restart-mysql
 [change-timezone]:#how-to-change-the-timezone-in-mysql
@@ -66,6 +69,140 @@
 [foreign-key]:#how-to-create-a-foreign-key
 
 ---
+
+
+
+### THE USING KEYWORD
+
+<details>
+
+<summary>
+View Content
+</summary>
+
+The USING(column_list) clause names a list of columns that must exist in both tables.
+
+#### Creating the tables
+
+```sql
+create table companies(
+    comp_id serial,
+    name varchar(35)
+);
+
+
+create table consoles(
+	cons_id serial,
+	name varchar(35),
+	 comp_id bigint(20) unsigned,
+	 index(comp_id),
+	constraint fk_console
+	foreign key fk_console(comp_id) references Test.companies(comp_id)
+	on update cascade
+	on delete cascade
+);
+
+create table games(
+	gam_id serial,
+	name varchar(50),
+	 cons_id bigint(20) unsigned,
+	index(cons_id),
+	price decimal(5,2),
+	constraint fk_game
+	foreign key fk_game(cons_id) references Test.consoles(cons_id)
+	on update cascade
+	on delete cascade
+);
+
+
+```
+
+#### Inserting the data 
+
+```sql
+
+insert into Test.companies (name) values 
+("Nintendo"),
+("Playstation"),
+("Microsoft");
+
+
+
+insert into Test.consoles(name, comp_id) values 
+("Xbox 360" ,3),
+("Playstation 4" , 2),
+("3DS",1);
+
+
+insert into Test.consoles(name, cons_id, price) values 
+("dead island" ,1,40),
+("god of war 4" , 2, 60),
+("witcher 3" , 2, 60),
+("monster hunter:stories" , 3, 40),
+("legend of zelda: a link between worlds" , 3, 40),
+("dragon quest 7" , 3, 30);
+
+
+```
+
+#### Retrieving a table with USING keyword 
+
+```sql
+SELECT g.gam_id as id ,  g.name as game,  c.name as company , co.name as console
+FROM Test.consoles as co inner join Test.companies as c using(comp_id)
+inner join Test.games as g  using(cons_id);
+
+
++----+----------------------------------------+-------------+---------------+
+| id | game                                   | company     | console       |
++----+----------------------------------------+-------------+---------------+
+|  1 | dead island                            | Microsoft   | Xbox 360      |
+|  2 | god of war 4                           | Playstation | Playstation 4 |
+|  3 | witcher 3                              | Playstation | Playstation 4 |
+|  4 | monster hunter: stories                | Nintendo    | 3DS           |
+|  5 | legend of zelda: a link between worlds | Nintendo    | 3DS           |
+|  6 | dragon quest 7                         | Nintendo    | 3DS           |
++----+----------------------------------------+-------------+---------------+
+
+
+```
+
+
+
+</details>
+
+[go back :house:][home]
+
+
+### THE ON KEYWORD
+
+<details>
+
+<summary>
+View Content
+</summary>
+
+**references**
+- [Understanding JOINs in MySQL and Other Relational Databases](https://www.sitepoint.com/understanding-sql-joins-mysql-database/)
+
+The **on** keyword compares the compares the primary key of one table to the foreign key of a 
+another
+
+
+```sql
+SELECT t.id as id, CONCAT(t.first_name, " " , t.last_name)  as name , group_concat(p.name) as pokemon 
+FROM Pokemon.trainers as t inner join Pokemon.pokemon as p 
+
+// This is comparing  trainers id to the pokemon trainer_id
+ON t.id = trainer_id group by id;
+
+```
+
+</details>
+
+[go back :house:][home]
+
+
 
 ### HOW TO CREATE A SIMPLE JOIN 
 
