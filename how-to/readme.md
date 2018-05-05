@@ -26,8 +26,10 @@
 - [how to restart mysql][restart-mysql]
 
 ## Tables
+- [how to clear data from a table][clear-table]
 
 ## Triggers
+- [the trigger structure][trigger-structure]
 - [how to change data before inserting][change-data]
 - [how to create a trigger][trigger]
 
@@ -50,6 +52,8 @@
 -  how to do normalization properly
 - how to use mysql workbench 
 
+[clear-table]:#how-to-clear-data-from-a-table
+[trigger-structure]:#the-trigger-structure
 [using-join]:#the-using-keyword
 [on-join]:#the-on-keyword
 [simple-join]:#how-to-create-a-simple-join
@@ -70,6 +74,48 @@
 
 ---
 
+
+### HOW TO CLEAR DATA FROM A TABLE
+
+<details>
+
+<summary>
+View Content
+</summary>
+
+```
+TRUNCATE TABLE insert_table;
+
+```
+
+</details>
+
+[go back :house:][home]
+
+
+### THE TRIGGER STRUCTURE
+
+<details>
+
+<summary>
+View Content
+</summary>
+
+```sql
+DELIMITER $$
+CREATE TRIGGER  trigger_name
+[BEFORE|AFTER] [INSERT|UPDATE|DELETE] ON table_name
+FOR EACH ROW [FOLLOWS|PRECEDES] existing_trigger_name
+BEGIN
+…
+END$$
+DELIMITER ;
+
+```
+
+</details>
+
+[go back :house:][home]
 
 
 ### THE USING KEYWORD
