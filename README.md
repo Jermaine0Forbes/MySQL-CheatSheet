@@ -73,7 +73,7 @@ I have a terrible memory so this is a cheat sheet
 [exp]:#explain
 [format]:#format
 [great]:#greatest
-[group]:#group_by
+[group]:#group-by
 [have]:#having
 [home]:#table-of-contents
 [if]:#if
@@ -617,6 +617,13 @@ Explanation: Chooses the greatest number based on the columns you add in the par
 [go back to table of contents][home]
 
 ### GROUP BY
+
+<details>
+
+<summary>
+View Content
+</summary>
+
 - group tells sql what column you are going to group the multiple values to
 and orders them in that manner. So lets say there is a customer named "bob"
  and he made multiple purchases to a store name "macy's". If I wanted to show
@@ -669,6 +676,77 @@ Explanation: group by is like group_concat(distinct), whatever values that are c
 specific column will be grouped together in one virtual column. In this example, I grouped all
 the pokemon that belong to a specific trainer so that you will know how many pokemon on trainer
 possesses
+
+#### Second Example
+
+```sql
+ select id, name, city, state from farmers limit 10;
+ 
+ +----+--------------------------+--------------------+----------------+
+| id | name                     | city               | state          |
++----+--------------------------+--------------------+----------------+
+|  1 | Roman Mohr               | East Faustinofurt  | Ohio           |
+|  2 | Domenick Spinka          | Port Ottomouth     | Michigan       |
+|  3 | Jimmy Rohan              | Port Minerva       | New Hampshire  |
+|  4 | Miss Dena Nicolas V      | Gennaroside        | Maine          |
+|  5 | Dr. Jarret Gulgowski Jr. | Lake Viviennemouth | Minnesota      |
+|  6 | Fleta Runte              | Dietrichstad       | North Carolina |
+|  7 | Orlando Parker           | Millerburgh        | Virginia       |
+|  8 | Nicolette Christiansen   | Port Adonis        | Maine          |
+|  9 | Tianna Ondricka          | Hauckmouth         | New Hampshire  |
+| 10 | Louie Eichmann MD        | West Lewisside     | Oregon         |
++----+--------------------------+--------------------+----------------+
+
+
+select id , animal, farmer_id from animals limit 10;
+
++----+---------+-----------+
+| id | animal  | farmer_id |
++----+---------+-----------+
+|  1 | duck    |         7 |
+|  2 | chicken |         6 |
+|  3 | chicken |        13 |
+|  4 | cow     |         7 |
+|  5 | chicken |        14 |
+|  6 | pig     |        14 |
+|  7 | pig     |         8 |
+|  8 | pig     |        19 |
+|  9 | pig     |        13 |
+| 10 | giraffe |         7 |
++----+---------+-----------+
+
+select farmers.id as id, farmers.name as name, GROUP_CONCAT(animals.animal) as animal from farmers left join animals on farmers.id = animals.farmer_id group by id;
+
++----+--------------------------+--------------------------------------------------------+
+| id | name                     | animal                                                 |
++----+--------------------------+--------------------------------------------------------+
+|  1 | Roman Mohr               | chicken,elephant                                       |
+|  2 | Domenick Spinka          | dog,pig,chicken,pig,horse                              |
+|  3 | Jimmy Rohan              | giraffe,elephant                                       |
+|  4 | Miss Dena Nicolas V      | chicken,cow,duck                                       |
+|  5 | Dr. Jarret Gulgowski Jr. | duck,cow,elephant,horse                                |
+|  6 | Fleta Runte              | chicken,duck,elephant,elephant,giraffe,dog,chicken     |
+|  7 | Orlando Parker           | duck,cow,giraffe,pig,pig,horse,giraffe,cow,pig,cow,dog |
+|  8 | Nicolette Christiansen   | pig,horse,cow,dog,chicken,pig                          |
+|  9 | Tianna Ondricka          | pig,dog                                                |
+| 10 | Louie Eichmann MD        | giraffe,duck,pig,pig,duck,elephant                     |
+| 11 | Stanton Schmidt PhD      | pig,pig,dog,chicken                                    |
+| 12 | Carmine Beier            | chicken,elephant,giraffe,dog,horse                     |
+| 13 | Boris Schneider          | chicken,pig,dog,chicken,horse,horse,dog                |
+| 14 | Harold Boyle             | chicken,pig,dog,pig,pig,chicken,duck,dog               |
+| 15 | Abigayle Reilly          | dog,elephant,dog,dog,duck                              |
+| 16 | Katheryn Schneider V     | pig,dog,giraffe,cow,duck                               |
+| 17 | Justen Stroman MD        | chicken,cow,duck,pig,pig,horse,dog,cow                 |
+| 18 | Irving Cummerata         | chicken,horse,dog,pig                                  |
+| 19 | Abbigail Jacobson        | pig,horse                                              |
+| 20 | Marilie Wolff            | dog,giraffe,horse,elephant                             |
++----+--------------------------+--------------------------------------------------------+
+
+
+```
+
+</details>
+
 
 [go back to table of contents][home]
 
