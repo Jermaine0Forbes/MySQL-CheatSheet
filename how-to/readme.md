@@ -42,16 +42,20 @@
 - [how to create a user and grant privileges][create-user]
 - [how to change permissions and privileges for a user][permission]
 
+## Views
+-[how to create a view][create-view]
+
 ## Stuff I need to do eventually
 
-- how to set a variable 
+- how to set a variable
 - how to do an after trigger
 - how to install timezones into sql
 - is sharding possible in mysql?
 - when to use unique keys
 -  how to do normalization properly
-- how to use mysql workbench 
+- how to use mysql workbench
 
+[create-view]:#how-to-create-a-view
 [clear-table]:#how-to-clear-data-from-a-table
 [trigger-structure]:#the-trigger-structure
 [using-join]:#the-using-keyword
@@ -73,6 +77,29 @@
 [foreign-key]:#how-to-create-a-foreign-key
 
 ---
+
+### HOW TO CREATE A VIEW
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [thenewboston](https://www.youtube.com/watch?v=luO2MWjUqe4)
+- [mysqltutorial](http://www.mysqltutorial.org/create-sql-views-mysql.aspx)
+
+**My definition:**  Create a temporary table that retrieves a specific query that
+was assigned to the view.
+
+```sql
+ CREATE VIEW tenCusts AS SELECT id , name, age, money FROM customers LIMIT 10;
+```
+
+</details>
+
+[go back :house:][home]
+
 
 
 ### HOW TO CLEAR DATA FROM A TABLE
@@ -163,24 +190,24 @@ create table games(
 
 ```
 
-#### Inserting the data 
+#### Inserting the data
 
 ```sql
 
-insert into Test.companies (name) values 
+insert into Test.companies (name) values
 ("Nintendo"),
 ("Playstation"),
 ("Microsoft");
 
 
 
-insert into Test.consoles(name, comp_id) values 
+insert into Test.consoles(name, comp_id) values
 ("Xbox 360" ,3),
 ("Playstation 4" , 2),
 ("3DS",1);
 
 
-insert into Test.consoles(name, cons_id, price) values 
+insert into Test.consoles(name, cons_id, price) values
 ("dead island" ,1,40),
 ("god of war 4" , 2, 60),
 ("witcher 3" , 2, 60),
@@ -191,7 +218,7 @@ insert into Test.consoles(name, cons_id, price) values
 
 ```
 
-#### Retrieving a table with USING keyword 
+#### Retrieving a table with USING keyword
 
 ```sql
 SELECT g.gam_id as id ,  g.name as game,  c.name as company , co.name as console
@@ -231,13 +258,13 @@ View Content
 **references**
 - [Understanding JOINs in MySQL and Other Relational Databases](https://www.sitepoint.com/understanding-sql-joins-mysql-database/)
 
-The **on** keyword compares the compares the primary key of one table to the foreign key of a 
+The **on** keyword compares the compares the primary key of one table to the foreign key of a
 another
 
 
 ```sql
-SELECT t.id as id, CONCAT(t.first_name, " " , t.last_name)  as name , group_concat(p.name) as pokemon 
-FROM Pokemon.trainers as t inner join Pokemon.pokemon as p 
+SELECT t.id as id, CONCAT(t.first_name, " " , t.last_name)  as name , group_concat(p.name) as pokemon
+FROM Pokemon.trainers as t inner join Pokemon.pokemon as p
 
 // This is comparing  trainers id to the pokemon trainer_id
 ON t.id = trainer_id group by id;
@@ -250,7 +277,7 @@ ON t.id = trainer_id group by id;
 
 
 
-### HOW TO CREATE A SIMPLE JOIN 
+### HOW TO CREATE A SIMPLE JOIN
 
 <details>
 <summary>View Content</summary>
@@ -261,12 +288,12 @@ ON t.id = trainer_id group by id;
 The join command connects tables together with the foreign key constraint
 
 
-#### Getting the Pokemon's name, id, and the trainers first and last name 
+#### Getting the Pokemon's name, id, and the trainers first and last name
 
 ```sql
 
-SELECT p.id AS id,  p.name  AS name, CONCAT(t.first_name, " ", t.last_name) AS trainer 
-FROM Pokemon.pokemon AS p 
+SELECT p.id AS id,  p.name  AS name, CONCAT(t.first_name, " ", t.last_name) AS trainer
+FROM Pokemon.pokemon AS p
 INNER JOIN Pokemon.trainers AS t ON p.trainer_id = t.id;
 
 
@@ -290,12 +317,12 @@ INNER JOIN Pokemon.trainers AS t ON p.trainer_id = t.id;
 ```
 
 
-#### Getting the trainers id, full name, and the pokemon they have 
+#### Getting the trainers id, full name, and the pokemon they have
 
 
 ```sql
-SELECT t.id as id, CONCAT(t.first_name, " " , t.last_name)  as name , group_concat(p.name) as pokemon 
-FROM Pokemon.trainers as t inner join Pokemon.pokemon as p 
+SELECT t.id as id, CONCAT(t.first_name, " " , t.last_name)  as name , group_concat(p.name) as pokemon
+FROM Pokemon.trainers as t inner join Pokemon.pokemon as p
 on t.id = trainer_id group by id;
 
 
@@ -327,12 +354,12 @@ on t.id = trainer_id group by id;
 
 <details>
 <summary>View Content</summary>
-    
+
 **reference**
 - [mysqltutorial](http://www.mysqltutorial.org/mysql-foreign-key/)
 - [w3schools](https://www.w3schools.com/sql/sql_foreignkey.asp)
 
-#### If you are altering a table 
+#### If you are altering a table
 
 1. create the first two  tables that will be referenced
 
@@ -372,18 +399,18 @@ created_at datetime default current_timestamp
 
 ```
 
-3. Now create the foreign keys by altering the table and adding them in 
+3. Now create the foreign keys by altering the table and adding them in
 
 ```sql
 
-alter table orders 
+alter table orders
 add constraint fk_menu
 foreign key fk_menu(menu_id) references menu(id)
 on delete cascade
 on update cascade;
 
 
-alter table orders 
+alter table orders
 add constraint fk_cust
 foreign key fk_cust(cust_id) references customers(id)
 on delete cascade
@@ -394,7 +421,7 @@ on update cascade;
 4. And that is pretty much it
 
 
-#### If you are creating a table 
+#### If you are creating a table
 
 
 1. create the first two  tables that will be referenced
@@ -450,7 +477,7 @@ on delete cascade
 
 <details>
 <summary>View Content</summary>
-    
+
 **reference**
 :link: [coolest guides](https://coolestguidesontheplanet.com/start-stop-mysql-from-the-command-line-terminal-osx-linux/)
 
@@ -466,20 +493,20 @@ on delete cascade
 
 <details>
 <summary>View</summary>
-    
-1. check the current time 
+
+1. check the current time
 
 ````
 select now();
 ````
 
-2. now add this command and value `+8:00` based on how much hours need to 
-be added or taken away 
+2. now add this command and value `+8:00` based on how much hours need to
+be added or taken away
 
 ```
 SET GLOBAL time_zone = '+8:00';
 ```
-**Note:** this will only work when you are in mysql, after you leave the timezone 
+**Note:** this will only work when you are in mysql, after you leave the timezone
 will reset back to the original timezone
 
 </details>
@@ -687,7 +714,7 @@ View Content
 </summary>
 
  the essential command is this
- 
+
 ```sql
 	mysqldump -u *username* -p --all-databases > /path/to/location.sql
 ```
