@@ -41,6 +41,7 @@
 
 - [how to create a user and grant privileges][create-user]
 - [how to change permissions and privileges for a user][permission]
+- [how to list out all the users][list-users]
 
 ## Views
 -[how to create a view][create-view]
@@ -55,6 +56,7 @@
 -  how to do normalization properly
 - how to use mysql workbench
 
+[list-users]:#how-to-list-all-the-users
 [create-view]:#how-to-create-a-view
 [clear-table]:#how-to-clear-data-from-a-table
 [trigger-structure]:#the-trigger-structure
@@ -77,6 +79,25 @@
 [foreign-key]:#how-to-create-a-foreign-key
 
 ---
+
+### HOW TO LIST ALL THE USERS
+
+<details>
+<summary>
+View Content
+</summary>
+
+**reference**
+- [fast web host](https://www.fastwebhost.in/blog/mysql-list-users-how-to-list-mysql-user-accounts-via-command-line/)
+
+```sql
+SELECT User FROM mysql.user;
+```
+
+</details>
+
+
+[go back :house:][home]
 
 ### HOW TO CREATE A VIEW
 
