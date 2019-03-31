@@ -172,7 +172,7 @@ alter table pokemon  add speed int(3) default "18";
 Explanation: adds a new column called age that can hold a maximum of three digits
 and the default value will be 18
 
-#### Add multiple columns 
+#### Add multiple columns
 
 ```sql
 alter table pokemon add specialAtk int(3), add specialDef int(3);
@@ -681,7 +681,7 @@ possesses
 
 ```sql
  select id, name, city, state from farmers limit 10;
- 
+
  +----+--------------------------+--------------------+----------------+
 | id | name                     | city               | state          |
 +----+--------------------------+--------------------+----------------+
@@ -1123,11 +1123,11 @@ Explanation: With the truncate function it cuts off the remaining decimals place
 round them up
 
 
-#### TRUNCATING TABLES 
+#### TRUNCATING TABLES
 
 if you want to empty the rows of a table you will use the truncate command like this
 
-```sql 
+```sql
 truncate trainers;
 
 // this will empty the trainers table
@@ -1159,6 +1159,12 @@ Explanation: Gives you the amount of seconds that has passed since 1970
 update pokemon set name = "magmar" where id = 5;
 ```
 Explanation: changes the name to the pokemon that has the id of 5
+
+#### Update multiple columns
+
+```sql
+update pokemon set name = "magmar", type="fire", hp=5000 where id = 5;
+```
 
 [go back to table of contents][home]
 
