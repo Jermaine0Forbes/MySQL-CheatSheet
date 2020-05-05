@@ -10,6 +10,10 @@
 
 - [how to create a foreign key][foreign-key]
 
+## Importing/Dumping
+- [how to import a database ][import]
+- [how to dump a mysql database][dump]
+
 ## Joins
 
 - [how to create a simple join][simple-join]
@@ -25,6 +29,9 @@
 - [how to change the timezone in mysql ][change-timezone]
 - [how to restart mysql][restart-mysql]
 
+## Stored Prodedure
+- [how to dump a stored procedure with a database][store-dump]
+
 ## Tables
 - [how to clear data from a table][clear-table]
 
@@ -33,9 +40,7 @@
 - [how to change data before inserting][change-data]
 - [how to create a trigger][trigger]
 
-## Importing/Dumping
-- [how to import a database ][import]
-- [how to dump a mysql database][dump]
+
 
 ## Users
 
@@ -56,6 +61,7 @@
 -  how to do normalization properly
 - how to use mysql workbench
 
+[store-dump]:#how-to-dump-a-stored-procedure-with-a-database
 [list-users]:#how-to-list-all-the-users
 [create-view]:#how-to-create-a-view
 [clear-table]:#how-to-clear-data-from-a-table
@@ -79,6 +85,31 @@
 [foreign-key]:#how-to-create-a-foreign-key
 
 ---
+
+### HOW TO DUMP A STORED PROCEDURE WITH A DATABASE
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- [Dumping MySQL Stored Procedures, Functions and Triggers](http://www.ducea.com/2007/07/25/dumping-mysql-stored-procedures-functions-and-triggers/)
+---
+
+:exclamation: **Note:** This command does not only save procedures it saves other
+things like functions, and triggers
+
+---
+
+```
+mysqldump <other mysqldump options> --routines outputfile.sql
+```
+
+</details>
+
+[go back :house:][home]
+
 
 ### HOW TO LIST ALL THE USERS
 
