@@ -934,6 +934,14 @@ Explanation: orders the rows from ACS = alphabetic or numeric order, or DESC the
 Explanation: In this example, if you use order by you can generate rows in random
 order .
 
+#### Get a random number between 
+
+```sql
+select (FLOOR(RAND()*(10)+5));
+
+```
+Explanation: In this query, its getting a number between 5 -15
+
 [go back to table of contents][home]
 
 ### RENAME TO
