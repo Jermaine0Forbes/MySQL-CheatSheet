@@ -716,6 +716,26 @@ insert into customers (name) values ('jermaine forbes');
 // This will show in the orders table: {id: 1, name: "jermaine forbes", item: "taco", amount:2.00 , customer_id:1}
 ```
 
+#### AFTER INSERT EX:3
+
+```sql
+DELIMITER $$
+ CREATE TRIGGER insert_trigger
+	AFTER INSERT ON ons_ceertif_control_lot_controls
+		FOR EACH ROW
+			BEGIN
+            SET @client = (SELECT client_id FROM ons_ceertif_control_lots WHERE  id = new.lot_id);
+            SET @control = (SELECT control_id FROM ons_ceertif_control_lots WHERE id = new.lot_id);
+            SET @admin = (SELECT c.admin_id FROM ons_ceertif_control_lots as l INNER JOIN  ons_ceertif_control_clients as c ON l.client_id = c.id WHERE l.id = new.lot_id );
+            SET @delegate = (SELECT delegate_id FROM ons_ceertif_control_lots WHERE id = new.lot_id);
+			SET @delegateName = (SELECT name FROM ons_ceertif_control_delegataires WHERE id = @delegate);
+            
+			INSERT INTO ons_ceertif_control_lot_control_info (lot_id, lot_control_id, client_id, control_id, admin_id, delegate_id, delegate_name) VALUES (new.lot_id, new.id,@client, @control, @admin, @delegate, @delegateName );
+			END;$$
+
+DELIMITER ;
+```
+
 #### BEFORE INSERT
 ```sql
 create table customers (id serial, name varchar(100));
