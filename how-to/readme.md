@@ -676,7 +676,7 @@ insert into customers (name,account) values ('john',500.28);
 
 create table orders (id serial, name varchar(40), amount decimal(5,2) );
 
-delimeter $
+delimiter $
 	create trigger trigger_exchange
 		after insert on orders
 		 for each row
@@ -691,9 +691,48 @@ insert into customers (name,amount) values ('burger', 10.28);
 // the customer john's account will now show 490 instead 500.28 because of the trigger
 ```
 
+#### AFTER INSERT EX:2
+
+```sql
+create table customers (id serial, name varchar(100));
+
+create table orders (id serial, name varchar(40), item varchar(45) amount decimal(5,2) );
+
+DELIMITER $$
+ CREATE TRIGGER order_trigger
+	AFTER INSERT ON customers
+		FOR EACH ROW
+			BEGIN
+				SET @rand = FLOOR((RAND()*2)+1);
+                SET @item = CASE WHEN @rand = 1  THEN "burger" WHEN @rand = 2  THEN "taco" ELSE  "salad"  END;
+                SET @amount = @rand * FLOOR(RAND()*3);
+                
+				INSERT INTO orders (item, amount, customer_id) VALUES (@item, @amount, new.id);
+		END;$$
+
+DELIMITER ;
+insert into customers (name) values ('jermaine forbes');
+
+// This will show in the orders table: {id: 1, name: "jermaine forbes", item: "taco", amount:2.00 , customer_id:1}
+```
+
 #### BEFORE INSERT
 ```sql
+create table customers (id serial, name varchar(100));
 
+DELIMITER $$
+ CREATE TRIGGER reverse_name_trigger
+	BEFORE INSERT ON customers
+		FOR EACH ROW
+			BEGIN
+				SET new.name = REVERSE(new.name);
+	END;$$
+
+DELIMITER ;
+
+INSERT INTO customers (name) VALUES ("jessica mendez");
+
+// outputs: {id: 1, name:"zednem acissej" } 
 ```
 [go back to home][home]
 
@@ -783,7 +822,7 @@ that will compress the file
 ```
 
 
-#### HOW TO DUMP ONE DATABSE
+#### HOW TO DUMP ONE DATABASE
 
 this dumps one database to a path
 
