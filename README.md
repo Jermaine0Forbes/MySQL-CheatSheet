@@ -29,6 +29,8 @@ I have a terrible memory so this is a cheat sheet
 - [IFNULL()][inull]
 - [INDEX][index]
 - [INSERT][insert]
+- [JSON_EXTRACT][json-extract]
+- [JSON_UNQUOTE][json-unquote]
 - [MAX()][max]
 - [MD5()][md5]
 - [NOT BETWEEN][not-between]
@@ -50,6 +52,8 @@ I have a terrible memory so this is a cheat sheet
 - [UPDATE][update]
 - [WHERE][where]
 
+[json-unquote]:#json_unquote
+[json-extract]:#json_extract
 [add]:#add
 [alter]:#alter-table
 [as]:#as
@@ -589,6 +593,107 @@ index(trainer_id)
 insert into pokemon (name, type, hp, attack, defense, trainer_id) values ("psyduck", "water", 90, 75, 66, 3);
 ```
 Explanation:
+
+[go back to table of contents][home]
+
+### JSON_EXTRACT
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- [JSON_EXTRACT()](https://database.guide/json_extract-return-data-from-a-json-document-in-mysql/)
+---
+
+#### Example 1
+
+```sql
+SELECT JSON_EXTRACT('{"a": 1, "b": 2, "c": 3}', '$.b') AS 'Result';
+```
+
+```sql
++--------+
+| Result |
++--------+
+| 2      |
++--------+
+```
+
+#### Example 2
+
+```sql
+SET @data = '{  
+    "Person": {    
+       "Name": "Homer", 
+       "Age": 39,
+       "Hobbies": ["Eating", "Sleeping"]  
+    }
+ }';
+SELECT JSON_EXTRACT(@data, '$.Person.Name', '$.Person.Age', '$.Person.Hobbies') AS 'Result';
+```
+
+```sql
++---------------------------------------+
+| Result                                |
++---------------------------------------+
+| ["Homer", 39, ["Eating", "Sleeping"]] |
++---------------------------------------+
+```
+#### Example 3
+
+```sql
+SELECT JSON_EXTRACT('[1, 2, 3, 4, 5]', '$[1]', '$[3]') AS 'Result';
+```
+
+```sql
++--------+
+| Result |
++--------+
+| [2, 4] |
++--------+
+```
+
+
+Explanation: 
+
+</details>
+
+[go back to table of contents][home]
+
+### JSON_UNQUOTE
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- [database.guide](https://database.guide/json_unquote-remove-quotes-from-a-json-document-in-mysql/#:~:text=JSON_UNQUOTE%20%28%29%20%E2%80%93%20Remove%20Quotes%20from%20a%20JSON,depends%20on%20whether%20NO_BACKSLASH_ESCAPES%20is%20enabled%20or%20disabled.)
+---
+
+#### Example 1
+
+```sql
+SET @data = '"Homer Simpson"';
+SELECT 
+  @data Original, 
+  JSON_UNQUOTE(@data) Unquoted;
+```
+
+```sql
++-----------------+---------------+
+| Original        | Unquoted      |
++-----------------+---------------+
+| "Homer Simpson" | Homer Simpson |
++-----------------+---------------+
+```
+
+
+Explanation: Removes the string quotes from json strings or regular strings in general
+
+</details>
 
 [go back to table of contents][home]
 
