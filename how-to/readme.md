@@ -48,8 +48,11 @@
 - [how to change permissions and privileges for a user][permission]
 - [how to list out all the users][list-users]
 
+## Variables
+- [how to assign a query to a variable][var-query]
+
 ## Views
--[how to create a view][create-view]
+- [how to create a view][create-view]
 
 ## Stuff I need to do eventually
 
@@ -61,6 +64,7 @@
 -  how to do normalization properly
 - how to use mysql workbench
 
+[var-query]:#how-to-assign-a-query-to-a-variable
 [store-dump]:#how-to-dump-a-stored-procedure-with-a-database
 [list-users]:#how-to-list-all-the-users
 [create-view]:#how-to-create-a-view
@@ -85,6 +89,35 @@
 [foreign-key]:#how-to-create-a-foreign-key
 
 ---
+
+
+### HOW TO ASSIGN A QUERY TO A VARIABLE
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+
+- [How to store Query Result in a variable using MySQL?](https://www.tutorialspoint.com/how-to-store-query-result-in-a-variable-using-mysql)
+---
+
+:exclamation: **Note:** This is how you store a query result within a variable
+
+```sql
+SET @TotalPrice = (select sum(Price) from QueryResultDemo);
+```
+To output the query 
+
+```sql
+ SELECT  @TotalPrice;
+```
+
+</details>
+
+[go back :house:][home]
+
 
 ### HOW TO DUMP A STORED PROCEDURE WITH A DATABASE
 
