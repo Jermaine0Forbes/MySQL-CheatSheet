@@ -5,6 +5,7 @@
 - [how to change the database engine][engine]
 
 ## Errors
+- [Got a packet bigger than 'max_allowed_packet' bytes][err-1153]
 
 ## Foreign Key
 
@@ -64,6 +65,7 @@
 -  how to do normalization properly
 - how to use mysql workbench
 
+[err-1153]:#got-a-packet-bigger-than-max_allowed_packet-bytes
 [var-query]:#how-to-assign-a-query-to-a-variable
 [store-dump]:#how-to-dump-a-stored-procedure-with-a-database
 [list-users]:#how-to-list-all-the-users
@@ -89,6 +91,45 @@
 [foreign-key]:#how-to-create-a-foreign-key
 
 ---
+
+### GOT A PACKET BIGGER THAN max_allowed_packet BYTES
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- [MySQL: ERROR 1153 (08S01): Got a packet bigger than 'max_allowed_packet' bytes](https://ma.ttias.be/mysql-error-1153-08s01-got-a-packet-bigger-than-max-allowed-packet-bytes/)
+---
+
+If you get this error there are several ways to resolve. One way to increase the packet size in the command line,  or modifying the *my.cnf* file.
+
+#### Command line solution 
+
+```
+mysql --max_allowed_packet=100M dbname < /tmp/dump.sql
+```
+
+#### my.cnf solution
+
+```
+// Inside my.cnf file
+
+[mysqld]
+# ...
+# There might be other config parameters in here
+# ...
+max_allowed_packet      = 100M
+```
+
+After you did either or, restart the mysql server
+
+Explanation: 
+
+</details>
+
+[go back to table of contents][home]
 
 
 ### HOW TO ASSIGN A QUERY TO A VARIABLE
