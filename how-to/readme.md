@@ -6,6 +6,7 @@
 
 ## Errors
 - [Got a packet bigger than 'max_allowed_packet' bytes][err-1153]
+- [Lost connection to MySQL server during query][err-2013]
 
 ## Foreign Key
 
@@ -47,7 +48,7 @@
 
 - [how to create a user and grant privileges][create-user]
 - [how to change permissions and privileges for a user][permission]
-- [how to list out all the users][list-users]
+- [how to list out all the users][list-users]I 
 
 ## Variables
 - [how to assign a query to a variable][var-query]
@@ -65,6 +66,7 @@
 -  how to do normalization properly
 - how to use mysql workbench
 
+[err-2013]:#lost-connection-to-mysql-server-during-query
 [err-1153]:#got-a-packet-bigger-than-max_allowed_packet-bytes
 [var-query]:#how-to-assign-a-query-to-a-variable
 [store-dump]:#how-to-dump-a-stored-procedure-with-a-database
@@ -91,6 +93,30 @@
 [foreign-key]:#how-to-create-a-foreign-key
 
 ---
+
+### LOST CONNECT TO MYSQL SERVER DURING QUERY
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+- [stackexchange](https://dba.stackexchange.com/questions/124964/error-2013-hy000-lost-connection-to-mysql-server-during-query-while-load-of-my)
+---
+
+If you're getting this error and you want to increase the connection timeout value. You have to go
+into the MYSQL terminal and insert this 
+
+```sql
+SET GLOBAL connect_timeout = 10;
+```
+
+Explanation: 
+
+</details>
+
+[go back to table of contents][home]
 
 ### GOT A PACKET BIGGER THAN max_allowed_packet BYTES
 
